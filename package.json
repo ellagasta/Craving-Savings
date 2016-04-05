@@ -1,0 +1,24 @@
+{
+  "name": "craving-savings",
+  "version": "1.0.0",
+  "description": "Craving Savings is a web interface for children getting their first bank account. It teaches kids basic money management skills on a kid-friendly interface, while allowing parents to oversee and supervise their children.",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "http-server": "^0.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellagasta/Craving-Savings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ellagasta/Craving-Savings/issues"
+  },
+  "homepage": "https://github.com/ellagasta/Craving-Savings#readme"
+}

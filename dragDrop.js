@@ -44,7 +44,7 @@ $(document).ready(function(){
 		max:balance,
 		step:.01,
 		culture:'en-US',
-		numberFormat: "n",
+		numberFormat: "d",
 		change: function(event,ui){
 			var val;
 			if ($(this).val() < 0){
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	});
 	$("#organize-button").click(refreshDisplay);
 
-
+	$("#transfer").val("0.00");
 //	$("#transfer").spinner('option','culture','en-US');
 })
 
@@ -80,11 +80,15 @@ balance = 23.50;
 function addMoney(denomination, num, side){
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
-			console.log(idNum, startXLeft,startYLeft);
 			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
-			$("#"+idNum).draggable({'containment':"parent"});
+			$("#"+idNum).draggable({
+				'containment':"parent",
+				'revert':"invalid",
+				'revertDuration':100,
+			});
+			$("#"+idNum).draggable({stack:"img"});
 			$("#"+idNum).dblclick(function(){
 				splitDenomination(denomination,$(this).attr("id"));
 			});
@@ -102,7 +106,12 @@ function addMoney(denomination, num, side){
 			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
-			$("#"+idNum).draggable({'containment':"parent"});
+			$("#"+idNum).draggable({
+				'containment':"parent",
+				'revert':"invalid",
+				'revertDuration':100,
+			});
+			$("#"+idNum).draggable({stack:"img"});
 			$("#"+idNum).dblclick(function(){
 				splitDenomination(denomination,$(this).attr("id"));
 			});
@@ -171,7 +180,7 @@ function splitDenomination(denomination, idNum){
 }
 
 function divideDenomination(balance){
-	var original_balance = balance;
+	var original_balance = balance.toFixed(2);
 
 	var hundreds = Math.floor(balance.toFixed(2)/100);// toFixed for float imprecision errors
 	balance -= hundreds*100
@@ -204,7 +213,8 @@ function divideDenomination(balance){
 	balance -= pennies*.01
 
 	sum = hundreds*100+fifties*50+twenties*20+tens*10+fives*5+ones+quarters*.25+dimes*.1+nickels*.05+pennies*.01
-	if (Number(sum.toFixed(2))!==original_balance){
+	if (Number(sum.toFixed(2))!=original_balance){
+		console.log(sum.toFixed(2),original_balance);
 		alert("Denomination devision does not add up");
 	}
 	return {

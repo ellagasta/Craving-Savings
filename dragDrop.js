@@ -1,11 +1,7 @@
 $(document).ready(function(){
-	var dividedCount = divideDenomination(balance);
-    for (var denomination in dividedCount){
-    	if (dividedCount[denomination] !== 0){
-    		addMoney(denomination,dividedCount[denomination]);
-    	}
-    }
-    $("#left-balance").text("$"+left_balance.toFixed(2));
+	left_balance = balance;
+	right_balance = 0;
+	refreshDisplay();
 
 	$("#left-window").droppable({
 		drop: function(event,ui){
@@ -17,6 +13,9 @@ $(document).ready(function(){
 				$("#left-balance").text("$"+left_balance.toFixed(2));
 				$("#right-balance").text("$"+right_balance.toFixed(2));
 				item_locations[ui.draggable.attr('id')] = 'left';
+				var prevTransferValue = Number($("#transfer").val());
+				var newValue = prevTransferValue - value;
+				$("#transfer").val(newValue.toFixed(2));
 			}
 		},
 		tolerance: "intersect"
@@ -32,41 +31,84 @@ $(document).ready(function(){
 				$("#left-balance").text("$"+left_balance.toFixed(2));
 				$("#right-balance").text("$"+right_balance.toFixed(2));
 				item_locations[ui.draggable.attr('id')] = 'right';
+				var prevTransferValue = Number($("#transfer").val());
+				var newValue = prevTransferValue + value;
+				$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
 			}
 		},
 		tolerance: "intersect"
 	});
+
+	$("#transfer").spinner({
+		min:0,
+		max:balance,
+		step:.01,
+		culture:'en-US',
+		numberFormat: "n",
+		change: function(event,ui){
+			var val;
+			if ($(this).val() < 0){
+				val = 0;
+			}else{
+				var val = Math.min(Number($(this).val()), balance);
+			}
+			$(this).val(val.toFixed(2));
+			var total = left_balance + right_balance; 
+			right_balance = val;
+			left_balance = total - right_balance;
+
+			$("#left-balance").text("$"+left_balance.toFixed(2));
+			$("#right-balance").text("$"+right_balance.toFixed(2));
+			refreshDisplay();
+			console.log("CHANGE");
+		}
+	});
+
+	$("#organize-button").click(refreshDisplay);
+
+
+//	$("#transfer").spinner('option','culture','en-US');
 })
 
-left_balance = 0;
-right_balance = 0;
-item_locations = {}
 balance = 23.50;
-startX = 20;
-startY = 90;
-idNum = 0;
 
-function addMoney(denomination, num){
-	console.log(denomination);
-	for (var i = 0; i < num; i++){
-		$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
-		$("#"+idNum).css("top",startY+"px");
-		$("#"+idNum).css("left",startX+"px");
-		$("#"+idNum).draggable();
-		item_locations[idNum] = 'left';
-		idNum += 1;
-   		left_balance += monetaryValue(denomination);
+function addMoney(denomination, num, side){
+	if (side =='left'){
+		for (var i = 0; i < num; i++){
+			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#"+idNum).css("top",startYLeft+"px");
+			$("#"+idNum).css("left",startXLeft+"px");
+			$("#"+idNum).draggable({'containment':"parent"});
+			item_locations[idNum] = 'left';
+			idNum += 1;
 
-		startY += 20;
-    	startX += 20;
+			startYLeft += 20;
+	    	startXLeft += 20;
+		}
+		startXLeft = 30;
+		startYLeft += 50;
+	}else if (side =='right'){
+		for (var i = 0; i < num; i++){
+			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#"+idNum).css("top",startYRight+"px");
+			$("#"+idNum).css("left",startXRight+"px");
+			$("#"+idNum).draggable({'containment':"parent"});
+			item_locations[idNum] = 'right';
+			idNum += 1;
+
+			startYRight += 20;
+	    	startXRight += 20;
+		}
+		startXRight = 470;
+		startYRight += 50;		
+	}else{
+		alert('add money side error')
 	}
-	startX = 30;
-	startY += 50;
 
  //    if (denomination !="quarter"){
- //    	ctx.drawImage(image,startX,startY,200,200*image.height/image.width);
+ //    	ctx.drawImage(image,startXLeft,startYLeft,200,200*image.height/image.width);
 	// }else{
-	// 	ctx.drawImage(image,startX,startY,50,50*image.height/image.width);
+	// 	ctx.drawImage(image,startXLeft,startYLeft,50,50*image.height/image.width);
 	// }
  //    console.log(image.height,image.width);
     
@@ -113,20 +155,20 @@ function divideDenomination(balance){
 		quarter:quarters,
 		dime:dimes,
 		nickel:nickels,
-		pennie:pennies
+		penny:pennies
 	}
 }
 
 function imgHeight(denomination){
 	switch(denomination){
 		case "quarter":
-			return "25px";
-		case "dime":
-			return "";
+			return "50px";
+		case "dime": 
+			return "30px";
 		case "nickel":
-			return "";
+			return "40px";
 		case "penny":
-			return "";
+			return "30x";
 		default:
 			return "50px";
 	}
@@ -157,4 +199,29 @@ function monetaryValue(denomination){
 		default:
 			return undefined;
 	}	
+}
+
+function refreshDisplay(){
+	item_locations={};
+	startXLeft = 20;
+	startYLeft = 50;
+	startXRight = 470;
+	startYRight = 50;
+	idNum=0;
+
+	$('.money').remove();
+	var dividedCount = divideDenomination(left_balance);
+    for (var denomination in dividedCount){
+    	if (dividedCount[denomination] !== 0){
+    		addMoney(denomination,dividedCount[denomination],'left');
+    	}
+    }
+    dividedCount = divideDenomination(right_balance);
+    for (var denomination in dividedCount){
+    	if (dividedCount[denomination] !== 0){
+    		addMoney(denomination,dividedCount[denomination],'right');
+    	}
+    }
+    $("#left-balance").text("$"+left_balance.toFixed(2));
+    $("#right-balance").text("$"+right_balance.toFixed(2));
 }

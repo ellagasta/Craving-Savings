@@ -1,6 +1,6 @@
 #window-wrapper{
-	height:400px;
-	width:700px;
+	height:500px;
+	width:800px;
 	margin:20px;
 	position:relative;
 	border:1px solid black;
@@ -8,24 +8,40 @@
 	z-index:100;
 }
 #left-window{
-	height:300px;
-	width:300px;
-	position:relative;
+	height:90%;
+	width:40%;
+	position:absolute;
     display: inline-block;
-	margin-top:50px;
-	margin-left:10px;
+	top:5%;
+	left:2%;
 	border:1px solid black;
 	z-index:150;
 }
 #right-window{
-	height:300px;
-	width:300px;
-	position:relative;
+	height:90%;
+	width:40%;
+	position:absolute;
     display: inline-block;
-	margin-top:50px;
-	margin-left:70px;
+	top:5%;
+	right:2%;
 	border:1px solid black;
 	z-index:150;
+}
+#arrow{
+	display:inline-block;
+	position:absolute;
+	left:44.5%;
+	padding-left:1px;
+	top:45%;
+}
+#transfer{
+	width:50px;
+}
+#organize-button{
+	display:inline-block;
+	position:absolute;
+	top:80%;
+	left:45.5%;
 }
 .money{
 	position:absolute;

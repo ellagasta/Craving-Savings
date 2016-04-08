@@ -9,19 +9,38 @@ $(document).ready(function(){
 
 	$("#left-window").droppable({
 		drop: function(event,ui){
-			var source = ui.draggable.attr('src').split('/');
-			var value = monetaryValue(source[source.length - 1].split('.')[0]);
-			left_balance += value;
-			$("#left-balance").text("$"+left_balance.toFixed(2));
+			if (item_locations[ui.draggable.attr('id')] === 'right' ){
+				var source = ui.draggable.attr('src').split('/');
+				var value = monetaryValue(source[source.length - 1].split('.')[0]);
+				left_balance += value;
+				right_balance -= value;
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				item_locations[ui.draggable.attr('id')] = 'left';
+			}
 		},
-		tolerance: "pointer"
+		tolerance: "intersect"
 	});
-	$("#right-window").droppable();
+	
+	$("#right-window").droppable({		
+		drop: function(event,ui){
+			if (item_locations[ui.draggable.attr('id')] === 'left'){
+				var source = ui.draggable.attr('src').split('/');
+				var value = monetaryValue(source[source.length - 1].split('.')[0]);
+				right_balance += value;
+				left_balance -= value;
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				item_locations[ui.draggable.attr('id')] = 'right';
+			}
+		},
+		tolerance: "intersect"
+	});
 })
 
 left_balance = 0;
-left_items = [];
 right_balance = 0;
+item_locations = {}
 balance = 23.50;
 startX = 20;
 startY = 90;
@@ -34,8 +53,8 @@ function addMoney(denomination, num){
 		$("#"+idNum).css("top",startY+"px");
 		$("#"+idNum).css("left",startX+"px");
 		$("#"+idNum).draggable();
+		item_locations[idNum] = 'left';
 		idNum += 1;
-		left_items.push(idNum);
    		left_balance += monetaryValue(denomination);
 
 		startY += 20;

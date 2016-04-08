@@ -1,0 +1,35 @@
+#window-wrapper{
+	height:400px;
+	width:700px;
+	margin:20px;
+	position:relative;
+	border:1px solid black;
+
+	z-index:100;
+}
+#left-window{
+	height:300px;
+	width:300px;
+	position:relative;
+    display: inline-block;
+	margin-top:50px;
+	margin-left:10px;
+	border:1px solid black;
+	z-index:150;
+}
+#right-window{
+	height:300px;
+	width:300px;
+	position:relative;
+    display: inline-block;
+	margin-top:50px;
+	margin-left:70px;
+	border:1px solid black;
+	z-index:150;
+}
+.money{
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:200;
+}

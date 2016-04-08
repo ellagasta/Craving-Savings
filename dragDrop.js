@@ -63,7 +63,12 @@ $(document).ready(function(){
 			console.log("CHANGE");
 		}
 	});
-
+	$("#transfer").keypress(function(e){
+		if (e.keyCode==13){
+			$("#transfer").spinner('option','change').call($("#transfer"));
+			$("#transfer").blur();
+		}
+	});
 	$("#organize-button").click(refreshDisplay);
 
 
@@ -75,76 +80,133 @@ balance = 23.50;
 function addMoney(denomination, num, side){
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
+			console.log(idNum, startXLeft,startYLeft);
 			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
 			$("#"+idNum).draggable({'containment':"parent"});
+			$("#"+idNum).dblclick(function(){
+				splitDenomination(denomination,$(this).attr("id"));
+			});
+
 			item_locations[idNum] = 'left';
 			idNum += 1;
 
 			startYLeft += 20;
 	    	startXLeft += 20;
 		}
-		startXLeft = 30;
-		startYLeft += 50;
+		startXLeft -= 20*num;
+		startYLeft += 30;
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
 			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
 			$("#"+idNum).draggable({'containment':"parent"});
+			$("#"+idNum).dblclick(function(){
+				splitDenomination(denomination,$(this).attr("id"));
+			});
 			item_locations[idNum] = 'right';
 			idNum += 1;
 
 			startYRight += 20;
 	    	startXRight += 20;
 		}
-		startXRight = 470;
-		startYRight += 50;		
+		startXRight -= 20*num;
+		startYRight += 30;		
 	}else{
 		alert('add money side error')
 	}
-
- //    if (denomination !="quarter"){
- //    	ctx.drawImage(image,startXLeft,startYLeft,200,200*image.height/image.width);
-	// }else{
-	// 	ctx.drawImage(image,startXLeft,startYLeft,50,50*image.height/image.width);
-	// }
- //    console.log(image.height,image.width);
     
 }
 
+function splitDenomination(denomination, idNum){
+	var newMoney;
+	switch(denomination){
+		case "hundred":
+			newMoney= {"fifty":2};
+			break;
+		case "fifty":
+			newMoney=	{"twenty":2,"ten":1};
+			break;
+		case "twenty":
+			newMoney={"ten":2};
+			break;
+		case "ten":
+			newMoney= {"five":2};
+			break;
+		case "five":
+			newMoney= {"one":5};
+			break;
+		case "one":
+			newMoney= {"quarter":4};
+			break;
+		case "quarter":
+			newMoney={"dime":2,"nickel":1};
+			break;
+		case "dime":
+			newMoney= {"nickel":2};
+			break;
+		case "nickel":
+			newMoney = {"penny":5};
+			break;
+		case "penny":
+			return;
+		default:
+			newMoney= undefined;
+	}
+	if (item_locations[idNum] == "left"){
+		startXLeft = Number($("#"+idNum).css("left").split("px")[0]);
+		startYLeft = Number($("#"+idNum).css("top").split("px")[0]);
+	}else{
+		startXRight = Number($("#"+idNum).css("left").split("px")[0]);
+		startYRight = Number($("#"+idNum).css("top").split("px")[0]);
+	}
+	for (var denomination in newMoney){
+		console.log(denomination,newMoney[denomination])
+		addMoney(denomination,newMoney[denomination],item_locations[idNum]);
+	}
+	$("#"+idNum).remove();
+	delete item_locations[idNum];
+}
+
 function divideDenomination(balance){
-	var hundreds = Math.floor(balance/100);
+	var original_balance = balance;
+
+	var hundreds = Math.floor(balance.toFixed(2)/100);// toFixed for float imprecision errors
 	balance -= hundreds*100
 
-	var fifties = Math.floor(balance/50);
+	var fifties = Math.floor(balance.toFixed(2)/50);
 	balance -= fifties*50
 
-	var twenties = Math.floor(balance/20);
+	var twenties = Math.floor(balance.toFixed(2)/20);
 	balance -= twenties*20
 
-	var tens = Math.floor(balance/10);
+	var tens = Math.floor(balance.toFixed(2)/10);
 	balance -= tens*10
 
-	var fives = Math.floor(balance/5);
+	var fives = Math.floor(balance.toFixed(2)/5);
 	balance -= fives*5
 
-	var ones = Math.floor(balance);
+	var ones = Math.floor(balance.toFixed(2));
 	balance -= ones
 
-	var quarters = Math.floor(balance*4);
+	var quarters = Math.floor(balance.toFixed(2)*4);
 	balance -= quarters*.25
 	
-	var dimes = Math.floor(balance*10);
+	var dimes = Math.floor(balance.toFixed(2)*10);
 	balance -= dimes*.10
 
-	var nickels = Math.floor(balance*20);
+	var nickels = Math.floor(balance.toFixed(2)*20);
 	balance -= nickels*.05
 	
-	var pennies = Math.floor(balance*100);
+	var pennies = Math.floor(balance.toFixed(2)*100); 
 	balance -= pennies*.01
 
+	sum = hundreds*100+fifties*50+twenties*20+tens*10+fives*5+ones+quarters*.25+dimes*.1+nickels*.05+pennies*.01
+	if (Number(sum.toFixed(2))!==original_balance){
+		alert("Denomination devision does not add up");
+	}
 	return {
 		hundred:hundreds,
 		fifty:fifties,
@@ -200,6 +262,7 @@ function monetaryValue(denomination){
 			return undefined;
 	}	
 }
+
 
 function refreshDisplay(){
 	item_locations={};

@@ -9,6 +9,7 @@
     <script type="text/javascript" src="dragDrop.js"></script>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -20,6 +21,44 @@
 	</button>
 	<div>
 		Tasks:
+	</div>
+
+	<div class="container">
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active">
+				<a href="#goals"><h4>Goals</h4></a>
+			</li>
+			<li>
+				<a href="#earn"><h4>Earn</h4></a>
+			</li>
+			<li>
+				<a href="#history"><h4>History</h4></a>
+			</li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="goals">
+				<div class="row">
+					<div class="col-md-3">
+						<div id="savings-account" class="panel panel-default goal">
+							<h4 class="text-center">Savings Account</h4>
+							<img src="http://placehold.it/350X350" class="goal-icon center-block">
+							<h4 class="text-center">$0.00 Saved!</h4>
+						</div>
+					</div>
+				<div class="col-md-3">
+					<div id="new-goal" class="panel panel-default goal">
+						<div class="text-center">
+							<i class="glyphicon glyphicon-plus-sign"></i>
+						</div>
+						<h4 class="text-center">Add new goal</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="earn">Earn $$$</div>
+		<div class="tab-pane" id="history">History...</div>
+		</div>
 	</div>
 </body>
 </html>

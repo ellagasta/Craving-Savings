@@ -66,6 +66,18 @@
 	border-right: 1px solid black;
 }
 
+.nav-tabs li a h4 {
+	opacity: 0.7;
+}
+
+.nav-tabs li.active a h4 {
+	opacity: 1;
+}
+
+.nav-tabs li a.hover h4 {
+	opacity: 1;
+}
+
 #spend-now {
 	font-size: 25px;
 	margin-top: 10px;

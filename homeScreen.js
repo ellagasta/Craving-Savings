@@ -15,7 +15,12 @@
 	// 	});
 	// })
 
-
+function getHtmlForNewGoal(name, amount) {
+    var html ='<div class="col-md-3"><div id="new-goal-1" class="panel panel-default goal"><div class="goal-non-hover"><h4 class="text-center">';
+    html += name;
+    html += '</h4><img src="http://placehold.it/350X350" class="goal-icon center-block"><h4 class="text-center">$0.00 Saved!</h4></div><div class="hover-add"><button class="btn btn-default hover-btn-top">Open Goal</button><button class="btn btn-default hover-btn-bottom">Add $ to Savings</button></div></div></div>';
+    return html;
+}
 
 $(function () {
 	$('#myTab a:first').tab('show');
@@ -32,6 +37,15 @@ $(function () {
 	{ 
 	    $('.hover-add').fadeTo("fast", 0);
 	    $('.goal-non-hover').fadeTo("fast", 1);
+	});
+
+
+
+	$('.new-goal').click(function() {
+		//alert("new-goal");
+		//$('#goals-row-1').append('<div class="col-md-3">Hello</div>');
+		//console.log("done");
+		$(getHtmlForNewGoal("Test", 5.00)).insertBefore('.add-new-goal-col');
 	});
 
 })

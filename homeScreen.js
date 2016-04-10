@@ -1,20 +1,3 @@
-
-	// $('#myTab a').click(function (e) {
-	// 	 e.preventDefault();
-	// 	 $(this).tab('show');
-	// });
-
-	// $(function () {
-	// 	$('#myTabs a:first').tab('show'); // Select first tab
-
-
-	// 	$('#myTabs a').click(function (e) {
-	// 	  		  console.log("hi");
-	// 		e.preventDefault();
-	// 	  $(this).tab('show');
-	// 	});
-	// })
-
 function getHtmlForNewGoal(name, amount) {
     var html ='<div class="col-md-3"><div id="new-goal-1" class="panel panel-default goal"><div class="goal-non-hover"><h4 class="text-center">';
     html += name;
@@ -39,12 +22,7 @@ $(function () {
 	    $('.goal-non-hover').fadeTo("fast", 1);
 	});
 
-
-
 	$('.new-goal').click(function() {
-		//alert("new-goal");
-		//$('#goals-row-1').append('<div class="col-md-3">Hello</div>');
-		//console.log("done");
 		$(getHtmlForNewGoal("Test", 5.00)).insertBefore('.add-new-goal-col');
 	});
 

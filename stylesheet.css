@@ -114,6 +114,12 @@
 	border: 1px solid black;
 }
 
+.progress {
+	height: 11px;
+	position: relative;
+	top: 4px;
+}
+
 body {
 	font-family: 'Questrial', sans-serif;
 }
@@ -152,4 +158,9 @@ body {
 	top: 137px;
 	height: 100px;
 	width: 200px;
+}
+
+.progress-amount {
+	position: relative;
+	top: -12px;
 }

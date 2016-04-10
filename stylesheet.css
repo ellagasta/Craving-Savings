@@ -84,6 +84,11 @@
 	height: 300px;
 }
 
+.new-goal {
+	padding: 10px;
+	height: 300px;
+}
+
 .goal-icon {
 	width: 200px;
 }
@@ -107,4 +112,32 @@ body {
 
 .available-funds {
 	font-size: 40px;
+}
+
+.hover-add {
+	position: absolute;
+	left: 35px;
+	top: 13px;
+	display: none;
+}
+
+.btn {
+	border: 1px solid black;
+	font-size: 18px;
+}
+
+.hover-btn-top {
+	position: absolute;
+	left: 8px;
+	top: 32px;
+	height: 100px;
+	width: 200px;
+}
+
+.hover-btn-bottom {
+	position: absolute;
+	left: 8px;
+	top: 137px;
+	height: 100px;
+	width: 200px;
 }

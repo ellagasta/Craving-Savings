@@ -59,7 +59,7 @@
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 }
-    
+
 .nav-tabs li.active a {
 	border-top: 1px solid black;
 	border-left: 1px solid black;
@@ -101,4 +101,10 @@ body {
 	font-family: 'Questrial', sans-serif;
 }
 
+#heading-row {
+	padding: 20px 30px 20px 30px;
+}
 
+.available-funds {
+	font-size: 40px;
+}

@@ -42,33 +42,50 @@
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="goals">
-				<div class="row">
+				<div class="row goals-row" id="goals-row">
 					<div class="col-md-3">
-						<div id="savings-account" class="panel panel-default goal">
-							<div class="goal-non-hover">
+						<div id="savings-account" class="panel panel-default goal hoverable-panel">
+							<div class="non-hover non-hover-div">
 								<h4 class="text-center">Savings Account</h4>
 								<img src="http://placehold.it/350X350" class="goal-icon center-block">
 								<h4 class="text-center">$0.00 Saved!</h4>
 							</div>
-							<div class="hover-add">
-								<button class="btn btn-default hover-btn-top">Open Goal</button>
-								<button class="btn btn-default hover-btn-bottom">Add $ to Goal</button>
+							<div class="hover-add hover-div">
+								<button class="btn btn-default hover-btn-top">Open Savings</button>
+								<button class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
 							</div>
 						</div>
-						
 					</div>
-				<div class="col-md-3">
-					<div id="new-goal" class="panel panel-default new-goal">
-						<div class="text-center">
-							<i class="glyphicon glyphicon-plus-sign"></i>
+					<div class="col-md-3 add-new-goal-col">
+						<div id="new-goal" class="panel panel-default btn btn-default new-goal">
+							<div class="text-center add-new-goal">
+								<i class="glyphicon glyphicon-plus-sign"></i>
+								<h4 class="text-center">Add new goal</h4>
+								 <!-- <a href="#" class="btn btn-default" id="openBtn">Open modal</a> -->
+							</div>
 						</div>
-						<h4 class="text-center">Add new goal</h4>
+					</div>
+				</div>
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">×</button>
+								<h3>Delete goal</h3>
+							</div>
+							<div class="modal-body">
+								<h4>Are you sure you want to delete the goal "Test"?</h4>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        						<button type="button" class="btn btn-primary">Yes, delete this goal</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="tab-pane" id="earn">Earn $$$</div>
-		<div class="tab-pane" id="history">History...</div>
+			<div class="tab-pane" id="earn">Earn $$$</div>
+			<div class="tab-pane" id="history">History...</div>
 		</div>
 	</div>
 </body>

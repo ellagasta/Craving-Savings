@@ -165,7 +165,7 @@ body {
 	width: 200px;
 }
 
-<<<<<<< HEAD
+
 #logo {
 	position: relative;
 	height: 60px;
@@ -187,12 +187,12 @@ body {
 	text-align: center;
 }
 
-.progress {
+#maingoal-bar {
 	height: 50px;
 	font-size: 20px;
 }
 
-.progress-bar-success{
+#maingoal-progress{
 	font-size: 30px;
 	padding-top: 15px;
 }
@@ -219,6 +219,7 @@ body {
 	font-size: 40px;
 	text-align: center;
 	padding-top: 35px;
+	word-spacing: 7px;
 }
 
 #goal-btns {
@@ -241,6 +242,24 @@ body {
 	width: 100px;
 }
 
+#editgoal-progress {
+	text-align: center;
+	font-size: 30px;
+	padding-top: 15px;
+}
+
 .progress-amount {
 	position: relative;
 	top: -12px;
+}
+
+#progress-text{
+	position: absolute;
+	display: block;
+    width: 100%;
+    color: gray;
+}
+
+#goal-total{
+	width: 80px;
+}

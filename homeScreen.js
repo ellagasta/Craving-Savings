@@ -1,9 +1,9 @@
 function getHtmlForNewGoal(name, amount) {
 	var html = '<div class="col-md-3"><div class="panel panel-default goal hoverable-panel"><div class="non-hover non-hover-div"><h4 class="text-center">';
 	html += name;
-	html += '</h4><img src="http://placehold.it/350X350" class="goal-icon center-block"><div class="progress"><div class="progress-bar" style="width: 60%;"></div></div><h4 class="text-center progress-amount">';
+	html += '</h4><img src="http://placehold.it/350X350" class="goal-icon center-block"><div class="progress"><div class="progress-bar" style="width: 0%;"></div></div><h4 class="text-center progress-amount">';
 	html += '$0.00/$' + amount;
-	html += '</h4></div><div class="hover-add hover-div"><button class="btn btn-default hover-btn-top">Open Goal</button><button class="btn btn-default hover-btn-bottom">Add $ to Savings</button></div></div></div>';
+	html += '</h4></div><div class="hover-add hover-div"><button class="btn btn-default hover-btn-top">Open Goal</button><button class="btn btn-default hover-btn-bottom">Add $ to Goal</button></div></div></div>';
 	return html;
 }
 

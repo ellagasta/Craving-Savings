@@ -26,4 +26,7 @@ $(function () {
 		$(getHtmlForNewGoal("Test", 5.00)).insertBefore('.add-new-goal-col');
 	});
 
+	$('#openBtn').click(function(){
+		$('#myModal').modal({show:true});
+	});
 })

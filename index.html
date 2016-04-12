@@ -52,7 +52,7 @@
 							</div>
 							<div class="hover-add hover-div">
 								<button class="btn btn-default hover-btn-top">Open Savings</button>
-								<button class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
+								<button id = "add-money-button" class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
 							</div>
 						</div>
 					</div>
@@ -101,6 +101,41 @@
 					</div>
 				</div>
 			</div>
+
+			<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
+				<div class="modal-dialog add-money-dialog">
+					<div class="modal-content add-money-content" id="window-wrapper">
+						<div class="modal-header add-money-header">
+							Transfer Money
+						</div>
+						<div class="modal-body add-money-body">
+							<div id="drag-and-drop-wrapper">
+								<div id="left-window">
+									<span id="left-balance"></span>
+								</div>
+								<div id="arrow">
+									<span>$ <input id="transfer" value="0"></span>
+								</div>
+								<button id ="organize-button">Organize</button>
+
+								<div id="right-window">
+									<span id="right-balance"></span>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="footer-button-wrapper">
+								<button id="cancel-transaction-button">Cancel</button>
+								<button id="confirm-transaction-button">Confirm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
 			<div class="tab-pane" id="earn">Earn $$$</div>
 			<div class="tab-pane" id="history">History...</div>
 		</div>

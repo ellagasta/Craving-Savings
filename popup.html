@@ -9,20 +9,43 @@
     <script type="text/javascript" src="dragDrop.js"></script>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+        <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-	<div id="window-wrapper">
-		<div id="left-window">
-			<span id="left-balance"></span>
-		</div>
-		<div id="arrow">
-			<span>$ <input id="transfer" value="0"></span>
-		</div>
-		<button id ="organize-button">Organize</button>
+	<button id="modal-button">button</button>
+	<div id ="modal-f" class = "modal fade" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content" id="window-wrapper">
+				<div class="modal-header transfer-header">
+					Transfer Money
+				</div>
+				<div class="modal-body">
+					<div id="drag-and-drop-wrapper">
+						<div id="left-window">
+							<span id="left-balance"></span>
+						</div>
+						<div id="arrow">
+							<span>$ <input id="transfer" value="0"></span>
+						</div>
+						<button id ="organize-button">Organize</button>
 
-		<div id="right-window">
-			<span id="right-balance"></span>
+						<div id="right-window">
+							<span id="right-balance"></span>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="footer-button-wrapper">
+						<button id="cancel-transaction-button">Cancel</button>
+						<button id="confirm-transaction-button">Confirm</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

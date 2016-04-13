@@ -1,91 +1,55 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Craving Savings</title>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!--<script type="text/javascript" src="jquery-ui.js"></script>-->
-    <script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="dragDrop.js"></script>
-    <script type="text/javascript" src="homeScreen.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-
-</head>
-
-<body>
-
-	<div class="row" id="heading-row">
-		<div class="col-md-3 text-left"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
-		<div class="col-md-6 text-center available-funds">John's Available Funds: $23.50</div>
-		<div class="col-md-1"></div>
-		<div class="col-md-2 text-right">
-			<button class="btn btn-default" id="spend-now-btn">
-				<img src="images/spendnow-btn-copy.png" width="100%" height="100%">
-			</button>
+<div id="goal-menu">
+	<div class="goalname-input">
+		<div class="makeEditable display">Goal Name Here</div>
+		<input class="makeEditable edit" value="0"  style="display:none"></input>
+	</div>
+	<div class="back-wrapper">
+		<button  type="button" class="btn btn-default back-btn" id="back">
+			<img src="images/back-icon.png" width="100%" height="100%">
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-md-4 goal-photobox">
+			<img src="http://placehold.it/400X400" class="goal-pic center-block goal-img">
+		</div>
+		<div class="col-md-8 text-center goal-info">
+			<div class="row goal-amt display">$<span class="cur-val">0.00</span> <span class="of">of  $</span><span class="max-val">10.00</span></div>
+			<div class="row edit goal-amtedit" style="display:none">$<span class="cur-val">0.00</span> of $<input class="goal-total" value="0"></div>
+			<div class="row goal-btns">
+				<button type="button" class="btn btn-success btn-lg add-togoal display">Add $ To Goal</button>
+			</div>
 		</div>
 	</div>
-
-	<div class="container">
-		<ul class="nav nav-tabs" id="myTab">
-			<li class="active">
-				<a href="#goals"><h4>Goals</h4></a>
-			</li>
-			<li>
-				<a href="#earn"><h4>Earn</h4></a>
-			</li>
-			<li>
-				<a href="#history"><h4>History</h4></a>
-			</li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="goals">
-				<div id="goalname-input">
-					<div id="makeEditable" contenteditable="true">Goal Name Here</div>
+	<div class="row" style="padding-right:0px;padding-left:0px;">
+		<div class="col-md-9">
+			<div class="progress maingoal-bar">
+			    <div class="progress-bar progress-bar-success progress-bar-striped maingoal-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+			    <span class="progress-bar-text">0</span>%
+			  	</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-danger btn-lg progress-row-btn delete-goal-btn display">Delete</button>
+			<button type="button" class="btn btn-danger btn-lg progress-row-btn cancel-btn edit" style="display:none">Cancel</button>
+			<button type="button" class="btn btn-default btn-lg progress-row-btn edit-goal-btn display">Edit</button>
+			<button type="button" class="btn btn-default btn-lg progress-row-btn save-goal edit" style="display:none">Save</button>
+		</div>
+	</div>
+	<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>Delete goal</h3>
 				</div>
-				<div id="back-btn">
-					<button  type="button" class="btn btn-default" id="back">
-						<img src="images/back-icon.png" width="100%" height="100%">
-					</button>
+				<div class="modal-body">
+					<h4>Are you sure you want to delete the goal "Test"?</h4>
 				</div>
-				<div class="row">
-					<div class="col-md-4" id= "goal-photobox">
-						<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
-					</div>
-					<div class="col-md-8 text-center" id="goal-info">
-						<div class="row" id="goal-amt">
-							 $8.00 of $10.00
-						</div>
-						<div class="row" id="goal-btns">
-							<button type="button" class="btn btn-default btn-lg" id="add-togoal">Add $ To Goal</button>
-						</div>
-					</div>
-				</div>
-				<div class="row" style="padding-right:0px;padding-left:0px;">
-					<div class="col-md-9">
-						<div class="progress" id="maingoal-bar">
-						    <div class="progress-bar progress-bar-success progress-bar-striped" id="maingoal-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-						    80% Complete
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<button type="button" class="btn btn-default btn-lg progress-row-btn">Delete</button>
-						<button type="button" class="btn btn-default btn-lg progress-row-btn save-goal">Edit</button>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Yes, delete this goal</button>
 				</div>
 			</div>
 		</div>
-		<!--<div class="tab-pane" id="earn">Earn $$$</div> -->
-		<!--<div class="tab-pane" id="history">History...</div> -->
-		</div>
 	</div>
-</body>
-</html>
+</div>

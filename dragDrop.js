@@ -229,6 +229,10 @@ $(document).ready(function(){
 
 	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
 	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
+	$('#spend-now-btn').click(function(){
+		$('#modal-add-money').modal({show:true});
+	}
+)
 //	$("#transfer").spinner('option','culture','en-US');
 })
 

@@ -300,8 +300,17 @@ $(document).ready(function(){
 
 	$("#transfer").val("0.00");
 
-	$("#add-money-button").click(function(){
-		$('#modal-add-money').modal({show:true});
-	});
+	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
+	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
+
+
 //	$("#transfer").spinner('option','culture','en-US');
 })
+
+var addMoneyClick = function(){
+	$('#modal-add-money').modal({show:true});
+}
+
+var openGoalClick = function(){
+	console.log("open goal");
+}

@@ -50,20 +50,9 @@
 	width: 600px;
 	margin: 10px 17%;
 }
-.modal-header.add-money-header{
-	padding:0px;
-}
-.modal-body.add-money-body{
-	padding:0px;
-}
 .footer-button-wrapper{
 	float:right;
 	margin-right:5%;
-}
-.add-money-header{
-	margin-top:2%;
-	margin-left:5%;
-	font-size:30px;
 }
 #drag-and-drop-wrapper{
 	position:relative;
@@ -213,7 +202,7 @@ body {
     height: 80px;
     margin-left: auto;
     margin-right: auto;
-*/}
+}
 
 #maingoal-bar {
 	height: 50px;
@@ -298,12 +287,23 @@ body {
 }
 
 #save-btns{
-	position: absolute;
-	left: 90%;
+	position: relative;
+	left: 100%;
 }
 
 #spend-now-btn {
-	width: 100px;
+	width: 150px;
+	margin-right: 20px;
+	margin-top: 3px;
+}
+
+.progress-row-btn {
+	margin-top: 6px;
+	width: 120px;
+}
+
+.save-goal {
+	margin-left: 5px;
 }
 
 body {

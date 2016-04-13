@@ -61,6 +61,10 @@ var addMoneyClick = function(id){
 	$("#modal-add-money").val(id);
 }
 
+var confirmPurchaseClick = function(id){
+	// TODO: make a confirm purchase modal
+}
+
 var openGoalClick = function(){
 	var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
 	console.log(id);

@@ -62,14 +62,19 @@
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="goals">
+				<div id="goalname-input">
+					<input id="makeEditable" value="Goal Name Here"></input>
+				</div>
+				<div id="back-btn">
+					<button  type="button" class="btn btn-default" id="back">
+						<img src="images/back-icon.png" width="100%" height="100%">
+					</button>
+				</div>
 				<div class="row">
 					<div class="col-md-4" id= "goal-photobox">
 						<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
 					</div>
 					<div class="col-md-8 text-center" id="goal-info">
-						<div class="row" id="goal-name">
-							<input id="makeEditable" value="Goal Name Here"></input>
-						</div>
 						<div class="row" id="goal-amtedit">
 							 $0.00 of <span> $<input id="goal-total" value="0"></span>
 						</div>

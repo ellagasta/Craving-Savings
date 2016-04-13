@@ -8,7 +8,7 @@ $(document).ready(function(){
    	createModalAddMoney();
 
 	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom").click(function(){
+	$(".btn.btn-default.hover-btn-bottom.addmode").click(function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("goal")[1];
 		addMoneyClick(0);
 	});
@@ -287,11 +287,20 @@ var createModalAddMoney = function(){
 		numberFormat: "d",
 		change: function(event,ui){
 			var val;
+			var id =$("#modal-add-money").val();
+			var max_val = Number($("#goal-menu-"+id).find(".max-val").text());
+			var cur_val = Number($("#goal-menu-"+id).find(".display").find(".cur-val").text());
+			console.log(Number($("#goal-menu-"+id).find(".max-val").text()));
 			if ($(this).val() < 0){
 				val = 0;
+			}else if ($(this).val() > max_val - cur_val){
+				val = max_val-cur_val;
 			}else{
-				var val = Math.min(Number($(this).val()), balance);
+				val = Number($(this).val());
 			}
+			val = Math.min(val,balance);
+			console.log(val);
+
 			$(this).val(val.toFixed(2));
 			var total = left_balance + right_balance; 
 			right_balance = val;
@@ -347,10 +356,14 @@ var createModalAddMoney = function(){
 
 		if (new_value >= max) {
 			$("#goal-menu-"+id).find('.purchasemode').show();
+			$("#goal"+id).find('.purchasemode').show();
 			$("#goal-menu-"+id).find('.addmode').hide();
+			$("#goal"+id).find('.addmode').hide();
 		} else {
-			$("#goal-menu-"+id).find('.purchasemode').hide();
 			$("#goal-menu-"+id).find('.addmode').show();
+			$("#goal"+id).find('.addmode').show();
+			$("#goal-menu-"+id).find('.purchasemode').hide();
+			$("#goal"+id).find('.purchasemode').hide();
 		}
 	});
 

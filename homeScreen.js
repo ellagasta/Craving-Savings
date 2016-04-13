@@ -8,7 +8,7 @@ function getHtmlForNewGoal(name, amount) {
 	html += name;
 	html += '</h4><img src="http://placehold.it/350X350" class="goal-icon center-block"><div class="progress"><div class="progress-bar" style="width: 0%;"></div></div><h4 class="text-center progress-amount">';
 	html += '$0.00/$' + amount;
-	html += '</h4></div><div class="hover-add hover-div"><button class="btn btn-default hover-btn-top">Open Goal</button><button class="btn btn-default hover-btn-bottom">Add $ to Goal</button></div></div></div>';
+	html += '</h4></div><div class="hover-add hover-div"><button class="btn btn-default hover-btn-top">Open Goal</button><button class="btn btn-default hover-btn-bottom addmode">Add $ to Goal</button><button class="btn btn-default hover-btn-bottom purchasemode" style="display:none">Purchase</button></div></div></div>';
 	return html;
 }
 
@@ -25,7 +25,12 @@ var unhoverFunc = function() {
 var newGoalClick = function(){
 	$(getHtmlForNewGoal("Goal Name Here", '10.00')).insertBefore('.add-new-goal-col');
 	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom").click(function(){
+	$(".btn.btn-default.hover-btn-bottom.addmode").click(function(){
+		var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
+		console.log(id);
+		addMoneyClick(id);
+	});
+	$(".btn.btn-default.hover-btn-bottom.purchasemode").click(function(){
 		var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
 		console.log(id);
 		addMoneyClick(id);
@@ -252,10 +257,15 @@ var addNewGoal = function(){
 
 			if (curVal >= newMax) {
 				$("#goal-menu-"+id).find('.purchasemode').show();
+				$("#goal"+id).find('.purchasemode').show();
 				$("#goal-menu-"+id).find('.addmode').hide();
+				$("#goal"+id).find('.addmode').hide();
 			} else {
 				$("#goal-menu-"+id).find('.addmode').show();
+				$("#goal"+id).find('.addmode').show();
 				$("#goal-menu-"+id).find('.purchasemode').hide();
+				$("#goal"+id).find('.purchasemode').hide();
+				
 			}
 
 			console.log(curVal);
@@ -274,6 +284,7 @@ var addNewGoal = function(){
 
 		$("#goal-menu-"+id).find(".btn-danger").click(function(){
 			$("#goal-menu-"+id).find('.edit').hide();
+			$("#goal-menu-"+id).find('.add-togoal').show();
 			$("#goal-menu-"+id).find('.display').show();
 
 		});

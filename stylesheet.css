@@ -243,7 +243,7 @@ body {
 	text-align: center;
 	margin-top: 120px;
 	word-spacing: 7px;
-	left:37%;
+	left:31%;
 }
 
 #goal-amt{
@@ -273,10 +273,10 @@ body {
 #spend-now {
 	position: relative;
 	padding-bottom: 5px;
-	padding-top: 5px;
+	/*padding-top: 5px;
 	padding-right: 5px;
-	padding-left: 5px;
-	width: 100px;
+	padding-left: 5px;*/
+	width: 120px;
 }
 
 #editgoal-progress {
@@ -299,4 +299,8 @@ body {
 
 #goal-total{
 	width: 80px;
+}
+
+#save-btns{
+	position: absolute;
 }

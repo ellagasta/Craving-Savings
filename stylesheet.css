@@ -96,6 +96,20 @@
 /*>>>>>>> playing with color
 */}
 
+.nav-tabs li a:hover {
+	background-color: #E6FFFF;
+	border-top: 3px solid black;
+	border-left: 3px solid black;
+	border-right: 3px solid black;
+}
+
+.nav-tabs li.active a:hover {
+	background-color: #E6FFFF;
+	border-top: 3px solid black;
+	border-left: 3px solid black;
+	border-right: 3px solid black;
+}
+
 .nav-tabs li a h4 {
 	text-align: center;
 	opacity: 0.7;
@@ -195,6 +209,10 @@ body {
 .btn {
 	border: 2px solid black;
 	font-size: 18px;
+}
+
+.btn:hover {
+	border: 2px solid black;
 }
 
 .hover-btn-top {
@@ -342,6 +360,7 @@ body {
 	width: 150px;
 	margin-right: 20px;
 	margin-top: 3px;
+	background-color: #E6FFFF;
 }
 
 .progress-row-btn {
@@ -362,6 +381,13 @@ body {
 	border: 3px solid black;
 }
 
-body {
+/*<<<<<<< HEAD
+*/body {
 	background-color: rgb(78,205,196);
 }
+/*=======
+*/.non-hover-div .bottom {
+	margin-top: 0px;
+}
+/*>>>>>>> more formatting and design stuff
+*/

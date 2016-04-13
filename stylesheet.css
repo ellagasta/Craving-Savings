@@ -71,6 +71,7 @@
 }
 .tab-pane {
 	border: 1px solid black;
+	background-color: rgb(85,98,112);
 }
   
 .nav-tabs li a {
@@ -84,6 +85,7 @@
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
+	background-color: rgb(85,98,112);
 }
 
 .nav-tabs li a h4 {
@@ -302,4 +304,8 @@ body {
 
 #spend-now-btn {
 	width: 100px;
+}
+
+body {
+	background-color: rgb(78,205,196);
 }

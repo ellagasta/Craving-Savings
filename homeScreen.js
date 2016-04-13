@@ -36,6 +36,7 @@ var newGoalClick = function(){
 	$("#home-screen").hide();
 	$("#goal-menu-"+id).show();
 	$("#back"+id).click(function(){
+		console.log(id);
 		$("#goal-menu-"+id).hide();
 		$("#home-screen").show();
 	});
@@ -58,6 +59,12 @@ var replacePhotoWithLightSaber = function(){
 var addMoneyClick = function(id){
 	$('#modal-add-money').modal({show:true});
 	$("#modal-add-money").val(id);
+}
+
+var confirmPurchaseClick = function(id){
+	$('#purchase-modal').modal({show:true});
+	$("#purchase-modal").val(id);
+	// should delete goal
 }
 
 var openGoalClick = function(){
@@ -179,31 +186,11 @@ var addNewGoal = function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
 		addMoneyClick(id);
 	});
-	$(".goal-total").spinner({
-		min:0,
-		max:100000,
-		step:.01,
-		culture:'en-US',
-		numberFormat: "d",
-		change: function(event,ui){
-			var val;
-			var id = $(this).parent().parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
-			if ($("#goal-menu-"+id).find(".goal-total").val() < 0){
-				val = 0;
-			}else{
-				var val = Number($("#goal-menu-"+id).find(".goal-total").val());
-			}
-			$("#goal-menu-"+id).find(".goal-total").val(val.toFixed(2));
 
-			console.log("CHANGE");
-		}
-	});
-	$(".goal-total").keypress(function(e){
-		if (e.keyCode==13){
-			$(".goal-total").spinner('option','change').call($(".goal-total"));
-			$(".goal-total").blur();
-		}
-	});
+	$(".purchase-goal").click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
+		confirmPurchaseClick(id);
+	})
 
 	$('#deleteModal').attr('id','deleteModal'+thisID);
 	$('#deleteModal'+thisID).find('.btn.btn-danger').first().click(function(){

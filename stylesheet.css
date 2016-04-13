@@ -200,7 +200,7 @@ body {
     height: 80px;
     margin-left: auto;
     margin-right: auto;
-*/}
+}
 
 #maingoal-bar {
 	height: 50px;
@@ -285,10 +285,21 @@ body {
 }
 
 #save-btns{
-	position: absolute;
-	left: 90%;
+	position: relative;
+	left: 100%;
 }
 
 #spend-now-btn {
-	width: 100px;
+	width: 150px;
+	margin-right: 20px;
+	margin-top: 3px;
+}
+
+.progress-row-btn {
+	margin-top: 6px;
+	width: 120px;
+}
+
+.save-goal {
+	margin-left: 5px;
 }

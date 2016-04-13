@@ -344,6 +344,14 @@ var createModalAddMoney = function(){
 		var nonbalanceText = titleText[titleText.length-2];
 		var balanceText = titleText[titleText.length-1];
 		$('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
+
+		if (new_value >= max) {
+			$("#goal-menu-"+id).find('.purchasemode').show();
+			$("#goal-menu-"+id).find('.addmode').hide();
+		} else {
+			$("#goal-menu-"+id).find('.purchasemode').hide();
+			$("#goal-menu-"+id).find('.addmode').show();
+		}
 	});
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){

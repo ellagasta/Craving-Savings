@@ -207,6 +207,8 @@ var addNewGoal = function(){
 		var id = Number($(this).parent().parent().parent().attr("id").split("goal-menu-")[1]);
 		$("#goal-menu-"+id).find('.edit').show();
 		$("#goal-menu-"+id).find('.display').hide();
+		$("#goal-menu-"+id).find('.purchasemode').hide();
+		$("#goal-menu-"+id).find('.addmode').hide();
 
 		var title = $("#goal-menu-"+id).find('.makeEditable.display').text();
 		$("#goal-menu-"+id).find('.makeEditable.edit').val(title);
@@ -225,6 +227,14 @@ var addNewGoal = function(){
 			var newName = $("#goal-menu-"+id).find('.makeEditable.edit').val();
 			var newMax = $("#goal-menu-"+id).find('.goal-total').val();
 			var curVal = $("#goal-menu-"+id).find('.goal-amt').find('.cur-val').text();
+
+			if (curVal >= newMax) {
+				$("#goal-menu-"+id).find('.purchasemode').show();
+				$("#goal-menu-"+id).find('.addmode').hide();
+			} else {
+				$("#goal-menu-"+id).find('.addmode').show();
+				$("#goal-menu-"+id).find('.purchasemode').hide();
+			}
 
 			console.log(curVal);
 

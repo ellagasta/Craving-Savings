@@ -62,7 +62,9 @@ var addMoneyClick = function(id){
 }
 
 var confirmPurchaseClick = function(id){
-	// TODO: make a confirm purchase modal
+	$('#purchase-modal').modal({show:true});
+	$("#purchase-modal").val(id);
+	// should delete goal
 }
 
 var openGoalClick = function(){
@@ -184,6 +186,11 @@ var addNewGoal = function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
 		addMoneyClick(id);
 	});
+
+	$(".purchase-goal").click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
+		confirmPurchaseClick(id);
+	})
 
 	$('#deleteModal').attr('id','deleteModal'+thisID);
 	$('#deleteModal'+thisID).find('.btn.btn-danger').first().click(function(){

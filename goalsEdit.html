@@ -1,10 +1,10 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
+<!doctype html>
+<html lang="en">
+<head>
 	<meta charset="UTF-8" />
 	<title>Craving Savings</title>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script> 
-    <script type="text/javascript" src="goalsEdit.js"></script>   
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="goalsEdit.js"></script>
     <!--<script type="text/javascript" src="jquery-ui.js"></script>-->
     <script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -48,8 +48,15 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="goals">
 				<div class="row">
-					<div class="col-md-4" id= "goal-photobox">
-						<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
+					<div class="col-md-4" id="goal-photobox">
+						<div class="hoverable-panel">
+							<div class="non-hover non-hover-div">
+								<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
+							</div>
+							<div class="hover-add hover-div" style="text-align:center;">
+								<button id="photoBtn" class="btn btn-default hover-btn-photo">Upload Photo</button>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-8 text-center" id="goal-info">
 						<div class="row" id="goal-name">
@@ -65,7 +72,7 @@
 						<div class="progress" id="maingoal-bar">
 						  <div class="progress-bar progress-bar-success progress-bar-striped" id="editgoal-progress" role="progressbar"
 						  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-						    <span id="progress-text"> 0% Complete </span> 
+						    <span id="progress-text"> 0% Complete </span>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -79,6 +86,29 @@
 		</div>
 		<!--<div class="tab-pane" id="earn">Earn $$$</div> -->
 		<!--<div class="tab-pane" id="history">History...</div> -->
+		</div>
+	</div>
+
+	<div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>Upload Photo</h3>
+				</div>
+				<div class="modal-body">
+					<div id="uploadPhotoBox">
+						<p>Click to upload photo</p>
+					</div>
+					<div id="lightsaber" style="display:none;">
+						<img src="images/lightsaber.png" style="height:100%;">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="submitPhoto" type="button" class="btn btn-primary" data-dismiss="modal">Upload</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

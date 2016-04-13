@@ -15,7 +15,7 @@ var hoverFunc = function() {
 	$(this).find('.non-hover-div').fadeTo("fast", .5);
 }
 
-var unhoverFunc = function() { 
+var unhoverFunc = function() {
 	console.log('non-hovering!',$(this))
     $(this).find('.hover-div').fadeTo("fast", 0);
     $(this).find('.non-hover-div').fadeTo("fast", 1);
@@ -27,6 +27,19 @@ var newGoalClick = function(){
 	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
 	$('.hoverable-panel').hover(hoverFunc, unhoverFunc);
 }
+
+var uploadLightsaber = function(){
+	console.log("upload the lightsaber");
+	$("#uploadPhotoBox").hide();
+	$("#lightsaber").show();
+}
+
+var replacePhotoWithLightSaber = function(){
+	$("#goal-img").attr("src", "images/lightsaber.png");
+	$("#goal-img").css("border", "1px solid black");
+	$("#goal-img").css("border-radius", "4px");
+}
+
 $(function () {
 	$('#myTab a:first').tab('show');
 
@@ -42,4 +55,16 @@ $(function () {
 	$('#openBtn').click(function(){
 		$('#myModal').modal({show:true});
 	});
+
+	$('#photoBtn').click(function(){
+		$('#photoModal').modal({show:true});
+	})
+
+	$('#uploadPhotoBox').click(function(){
+		uploadLightsaber();
+	})
+
+	$('#submitPhoto').click(function(){
+		replacePhotoWithLightSaber();
+	})
 })

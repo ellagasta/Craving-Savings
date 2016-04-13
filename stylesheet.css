@@ -74,6 +74,7 @@
 }
   
 .nav-tabs li a {
+	width: 200px;
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
@@ -86,7 +87,9 @@
 }
 
 .nav-tabs li a h4 {
+	text-align: center;
 	opacity: 0.7;
+	font-size: 25px;
 }
 
 .nav-tabs li.active a h4 {
@@ -270,15 +273,6 @@ body {
 	/**position: relative;**/
 }
 
-#spend-now {
-	position: relative;
-	padding-bottom: 5px;
-	/*padding-top: 5px;
-	padding-right: 5px;
-	padding-left: 5px;*/
-	width: 120px;
-}
-
 #editgoal-progress {
 	text-align: center;
 	font-size: 30px;
@@ -303,4 +297,9 @@ body {
 
 #save-btns{
 	position: absolute;
+	left: 90%;
+}
+
+#spend-now-btn {
+	width: 100px;
 }

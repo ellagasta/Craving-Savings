@@ -24,7 +24,12 @@
 	<div class="row" id="heading-row">
 		<div class="col-md-3 text-left"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
 		<div class="col-md-6 text-center available-funds">John's Available Funds: $23.50</div>
-		<div class="col-md-3 text-right">Spend Now!</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-2 text-right">
+			<button class="btn btn-default" id="spend-now-btn">
+				<img src="images/spendnow-btn-copy.png" width="100%" height="100%">
+			</button>
+		</div>
 	</div>
 
 	<div class="container">
@@ -43,7 +48,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="goals">
 				<div class="row goals-row" id="goals-row">
-					<div class="col-md-3">
+					<div class="col-md-3" id="goal0">
 						<div id="savings-account" class="panel panel-default goal hoverable-panel">
 							<div class="non-hover non-hover-div">
 								<h4 class="text-center">Savings Account</h4>
@@ -61,7 +66,7 @@
 							<div class="text-center add-new-goal">
 								<i class="glyphicon glyphicon-plus-sign"></i>
 								<h4 class="text-center">Add new goal</h4>
-								 <a href="#" class="btn btn-default" id="openBtn">Open modal</a>
+								<!-- <a href="#" class="btn btn-default" id="openBtn">Open modal</a> -->
 							</div>
 						</div>
 					</div>
@@ -101,6 +106,8 @@
 					</div>
 				</div>
 			</div>
+			<div class="tab-pane" id="earn">Earn is not yet implemented.</div>
+			<div class="tab-pane" id="history">History is not yet implemented.</div>
 
 			<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
 				<div class="modal-dialog add-money-dialog">

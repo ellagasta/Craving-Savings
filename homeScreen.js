@@ -54,6 +54,8 @@ var replacePhotoWithLightSaber = function(id){
 	$("#goal-menu-"+id).find(".goal-img").attr("src", "images/lightsaber.png");
 	$("#goal-menu-"+id).find(".goal-img").css("border", "1px solid black");
 	$("#goal-menu-"+id).find(".goal-img").css("border-radius", "4px");
+
+	$("#goal"+id).find(".goal-icon").attr("src","images/lightsaber.png");
 }
 
 

@@ -27,18 +27,22 @@
 #arrow-block{
 	display:inline-block;
 	position:absolute;
-	left:44.5%;
+	left:43.5%;
 	padding-left:1px;
 	top:40%;
 }
 #transfer-arrow{
 	position:absolute;
 	margin-top:10px;
+	margin-left:3px;
 	height:300%;
 	width:100%;
 }
 #transfer{
 	width:50px;
+}
+.ui-spinner{
+	border: 1px solid black;
 }
 #organize-button{
 	display:inline-block;

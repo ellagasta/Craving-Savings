@@ -241,7 +241,7 @@ var addMoneyClick = function(){
 }
 
 var openGoalClick = function(){
-	$("#goals").children().hide();
+	$("#home-screen").hide();
 	$("#goals").append(goalDisplay);
 
 	console.log("open goal");
@@ -343,7 +343,7 @@ var createModalAddMoney = function(){
 }
 
 
-var goalDisplay='<div class="row">';
+var goalDisplay='<div id="goal"><div class="row">';
 goalDisplay+='<div class="col-md-4" id= "goal-photobox">';
 goalDisplay+='<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">';
 goalDisplay+='</div><div class="col-md-8 text-center" id="goal-info">';
@@ -354,4 +354,13 @@ goalDisplay+='<button type="button" class="btn btn-default btn-lg" id="add-togoa
 goalDisplay+='<div class="row" style="padding-right:0px;padding-left:0px;"><div class="col-md-9">';
 goalDisplay+='<div class="progress" id="maingoal-bar"><div class="progress-bar progress-bar-success progress-bar-striped" id="maingoal-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">';
 goalDisplay+='80% Complete</div></div></div><div class="col-md-2"><button type="button" class="btn btn-default btn-lg">Delete</button>';
-goalDisplay+='</div></div>'
+goalDisplay+='</div></div></div>'
+
+
+$.ajax({
+    url : "goalsEdit.html",
+    async:false,            //this is the trick
+    success : function(result){
+    			console.log(result);
+               } 
+    });

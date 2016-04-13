@@ -315,8 +315,14 @@ var createModalAddMoney = function(){
 		$('#modal-add-money').modal('toggle');
 	});
 	$("#confirm-transaction-button").click(function(){
-		console.log("transfer "+$("#right-balance").text()+".");
+		var transfer_amount = Number($("#right-balance").text().split("$")[1]);
+		balance-=transfer_amount;
+		console.log("transfer "+transfer_amount+" to leave a balance of " + balance+".");
 	   $('#modal-add-money').modal('toggle');
+	   var titleText = $('.available-funds').text().split("$");
+	   var nonbalanceText = titleText[titleText.length-2];
+	   var balanceText = titleText[titleText.length-1];
+	   $('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
 	});
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){

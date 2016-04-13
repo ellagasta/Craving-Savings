@@ -98,7 +98,6 @@ function splitDenomination(denomination, idNum){
 		startYRight = Number($("#"+idNum).css("top").split("px")[0]);
 	}
 	for (var denomination in newMoney){
-		console.log(denomination,newMoney[denomination])
 		addMoney(denomination,newMoney[denomination],item_locations[idNum]);
 	}
 	$("#"+idNum).remove();
@@ -140,7 +139,6 @@ function divideDenomination(balance){
 
 	sum = hundreds*100+fifties*50+twenties*20+tens*10+fives*5+ones+quarters*.25+dimes*.1+nickels*.05+pennies*.01
 	if (Number(sum.toFixed(2))!=original_balance){
-		console.log(sum.toFixed(2),original_balance);
 		alert("Denomination devision does not add up");
 	}
 	return {
@@ -227,7 +225,6 @@ function refreshDisplay(){
 var modal;
 $(document).ready(function(){
 	modal = $('#modal-add-money').html();
-	console.log(modal);
    	createModalAddMoney();
 
 	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
@@ -244,7 +241,6 @@ var openGoalClick = function(){
 }
 
 var createModalAddMoney = function(){
-	console.log("createModalAddMoney");
 	left_balance = balance;
 	right_balance = 0;
 	refreshDisplay();
@@ -306,7 +302,6 @@ var createModalAddMoney = function(){
 			$("#left-balance").text("$"+left_balance.toFixed(2));
 			$("#right-balance").text("$"+right_balance.toFixed(2));
 			refreshDisplay();
-			console.log("CHANGE");
 		}
 	});
 	$("#transfer").keypress(function(e){
@@ -325,7 +320,6 @@ var createModalAddMoney = function(){
 	});
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
-		console.log("RESET");
 		var newModal = '<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">'+modal+'</div';
     	$(this).replaceWith(newModal);
     	createModalAddMoney();

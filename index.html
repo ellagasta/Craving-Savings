@@ -1,9 +1,9 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
+<!doctype html>
+<html lang="en">
+<head>
 	<meta charset="UTF-8" />
 	<title>Craving Savings</title>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>    
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <!--<script type="text/javascript" src="jquery-ui.js"></script>-->
     <script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -52,12 +52,12 @@
 						<div id="savings-account" class="panel panel-default goal hoverable-panel">
 							<div class="non-hover non-hover-div">
 								<h4 class="text-center">Savings Account</h4>
-								<img src="http://placehold.it/350X350" class="goal-icon center-block">
+								<img src="images/piggy.png" class="goal-icon center-block" style="padding:23px 0px;">
 								<h4 class="text-center">$0.00 Saved!</h4>
 							</div>
 							<div class="hover-add hover-div">
 								<button class="btn btn-default hover-btn-top">Open Savings</button>
-								<button class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
+								<button id = "add-money-button" class="btn btn-default hover-btn-bottom">Add $ to Savings</button>
 							</div>
 						</div>
 					</div>
@@ -108,6 +108,43 @@
 			</div>
 			<div class="tab-pane" id="earn">Earn is not yet implemented.</div>
 			<div class="tab-pane" id="history">History is not yet implemented.</div>
+
+			<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">
+				<div class="modal-dialog add-money-dialog">
+					<div class="modal-content add-money-content" id="window-wrapper">
+						<div class="modal-header add-money-header">
+							Transfer Money
+						</div>
+						<div class="modal-body add-money-body">
+							<div id="drag-and-drop-wrapper">
+								<div id="left-window">
+									<span id="left-balance"></span>
+								</div>
+								<div id="arrow">
+									<span>$ <input id="transfer" value="0"></span>
+								</div>
+								<button id ="organize-button">Organize</button>
+
+								<div id="right-window">
+									<span id="right-balance"></span>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="footer-button-wrapper">
+								<button id="cancel-transaction-button">Cancel</button>
+								<button id="confirm-transaction-button">Confirm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="tab-pane" id="earn">Earn $$$</div>
+			<div class="tab-pane" id="history">History...</div>
 		</div>
 	</div>
 </body>

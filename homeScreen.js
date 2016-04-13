@@ -143,7 +143,7 @@ $(document).ready(function () {
 	$(".delete-goal-btn").click(function(){
 		$("#deleteModal0").find(".modal-header").find("h3").text("Empty Savings")
 
-		$("#deleteModal0").find(".modal-body").replaceWith('<div class="modal-body" style = "height:200px"><div style="float:left"><img src="/images/piggy-broken.png" style="width:100px"/></div><div style="float:right"><h4>Are you sure you want to empty the savings account?</h4></div></div>')
+		$("#deleteModal0").find(".modal-body").replaceWith('<div class="modal-body" style = "height:250px"><div style="float:left; width:40%"><img src="/images/piggy-broken.png" style="width:100%"/></div><div style="float:right; width:50%"><h4>Are you sure you want to empty the savings account?</h4></div></div>')
 
 
 		// $("#deleteModal0").find(".modal-body").find("h4").text('Are you sure you want to empty the savings account?')

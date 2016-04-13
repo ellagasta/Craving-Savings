@@ -62,14 +62,19 @@
 
 		<div class="tab-content">
 			<div class="tab-pane active" id="goals">
+				<div id="goalname-input">
+					<input id="makeEditable" value="Goal Name Here"></input>
+				</div>
+				<div id="back-btn">
+					<button  type="button" class="btn btn-default" id="back">
+						<img src="images/back-icon.png" width="100%" height="100%">
+					</button>
+				</div>
 				<div class="row">
 					<div class="col-md-4" id= "goal-photobox">
 						<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
 					</div>
 					<div class="col-md-8 text-center" id="goal-info">
-						<div class="row" id="goal-name">
-							<input id="makeEditable" value="Goal Name Here"></input>
-						</div>
 						<div class="row" id="goal-amtedit">
 							 $0.00 of <span> $<input id="goal-total" value="0"></span>
 						</div>
@@ -92,6 +97,38 @@
 		</div>
 		<!--<div class="tab-pane" id="earn">Earn $$$</div> -->
 		<!--<div class="tab-pane" id="history">History...</div> -->
+	</div>
+</body>
+</html>tton type="button" class="btn btn-default btn-lg progress-row-btn save-goal">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="tab-pane" id="earn">Earn $$$</div> -->
+		<!--<div class="tab-pane" id="history">History...</div> -->
+	</div>
+
+	<div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>Upload Photo</h3>
+				</div>
+				<div class="modal-body">
+					<div id="uploadPhotoBox">
+						<p>Click to upload photo</p>
+					</div>
+					<div id="lightsaber">
+						<img src="images/lightsaber.png" style="height:100%;">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="submitPhoto" type="button" class="btn btn-primary" data-dismiss="modal">Upload</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

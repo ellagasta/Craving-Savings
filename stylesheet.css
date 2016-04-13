@@ -24,12 +24,18 @@
 	border:1px solid black;
 /*	z-index:150;
 */}
-#arrow{
+#arrow-block{
 	display:inline-block;
 	position:absolute;
 	left:44.5%;
 	padding-left:1px;
-	top:45%;
+	top:40%;
+}
+#transfer-arrow{
+	position:absolute;
+	margin-top:10px;
+	height:300%;
+	width:100%;
 }
 #transfer{
 	width:50px;
@@ -38,7 +44,7 @@
 	display:inline-block;
 	position:absolute;
 	top:80%;
-	left:45.5%;
+	left:43.5%;
 }
 .money{
 	position:absolute;

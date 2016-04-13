@@ -241,6 +241,9 @@ var addMoneyClick = function(){
 }
 
 var openGoalClick = function(){
+	$("#goals").children().hide();
+	$("#goals").append(goalDisplay);
+
 	console.log("open goal");
 }
 
@@ -338,3 +341,17 @@ var createModalAddMoney = function(){
 
 	$("#transfer").val("0.00");
 }
+
+
+var goalDisplay='<div class="row">';
+goalDisplay+='<div class="col-md-4" id= "goal-photobox">';
+goalDisplay+='<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">';
+goalDisplay+='</div><div class="col-md-8 text-center" id="goal-info">';
+goalDisplay+='<div class="row" id="goal-name"><div id="makeEditable" contenteditable="true">Goal Name Here</div></div>';
+goalDisplay+='<div class="row" id="goal-amt">$8.00 of $10.00</div>';
+goalDisplay+='<div class="row" id="goal-btns">'
+goalDisplay+='<button type="button" class="btn btn-default btn-lg" id="add-togoal">Add $ To Goal</button></div></div></div>';
+goalDisplay+='<div class="row" style="padding-right:0px;padding-left:0px;"><div class="col-md-9">';
+goalDisplay+='<div class="progress" id="maingoal-bar"><div class="progress-bar progress-bar-success progress-bar-striped" id="maingoal-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">';
+goalDisplay+='80% Complete</div></div></div><div class="col-md-2"><button type="button" class="btn btn-default btn-lg">Delete</button>';
+goalDisplay+='</div></div>'

@@ -1,11 +1,8 @@
 #window-wrapper{
-	height:500px;
 	width:800px;
-	margin:20px;
 	position:relative;
 	border:1px solid black;
 
-	z-index:100;
 }
 #left-window{
 	height:90%;
@@ -15,8 +12,8 @@
 	top:5%;
 	left:2%;
 	border:1px solid black;
-	z-index:150;
-}
+/*	z-index:150;
+*/}
 #right-window{
 	height:90%;
 	width:40%;
@@ -25,8 +22,8 @@
 	top:5%;
 	right:2%;
 	border:1px solid black;
-	z-index:150;
-}
+/*	z-index:150;
+*/}
 #arrow{
 	display:inline-block;
 	position:absolute;
@@ -47,9 +44,31 @@
 	position:absolute;
 	top:0px;
 	left:0px;
-	z-index:200;
+/*	z-index:200;
+*/}
+.modal-dialog.add-money-dialog{
+	width: 600px;
+	margin: 10px 17%;
 }
-
+.modal-header.add-money-header{
+	padding:0px;
+}
+.modal-body.add-money-body{
+	padding:0px;
+}
+.footer-button-wrapper{
+	float:right;
+	margin-right:5%;
+}
+.add-money-header{
+	margin-top:2%;
+	margin-left:5%;
+	font-size:30px;
+}
+#drag-and-drop-wrapper{
+	position:relative;
+	height:450px;
+}
 .tab-pane {
 	border: 1px solid black;
 }

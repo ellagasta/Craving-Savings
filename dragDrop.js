@@ -1,86 +1,12 @@
-$(document).ready(function(){
-	left_balance = balance;
-	right_balance = 0;
-	refreshDisplay();
-
-	$("#left-window").droppable({
-		drop: function(event,ui){
-			if (item_locations[ui.draggable.attr('id')] === 'right' ){
-				var source = ui.draggable.attr('src').split('/');
-				var value = monetaryValue(source[source.length - 1].split('.')[0]);
-				left_balance += value;
-				right_balance -= value;
-				$("#left-balance").text("$"+left_balance.toFixed(2));
-				$("#right-balance").text("$"+right_balance.toFixed(2));
-				item_locations[ui.draggable.attr('id')] = 'left';
-				var prevTransferValue = Number($("#transfer").val());
-				var newValue = prevTransferValue - value;
-				$("#transfer").val(newValue.toFixed(2));
-			}
-		},
-		tolerance: "intersect"
-	});
-	
-	$("#right-window").droppable({		
-		drop: function(event,ui){
-			if (item_locations[ui.draggable.attr('id')] === 'left'){
-				var source = ui.draggable.attr('src').split('/');
-				var value = monetaryValue(source[source.length - 1].split('.')[0]);
-				right_balance += value;
-				left_balance -= value;
-				$("#left-balance").text("$"+left_balance.toFixed(2));
-				$("#right-balance").text("$"+right_balance.toFixed(2));
-				item_locations[ui.draggable.attr('id')] = 'right';
-				var prevTransferValue = Number($("#transfer").val());
-				var newValue = prevTransferValue + value;
-				$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
-			}
-		},
-		tolerance: "intersect"
-	});
-
-	$("#transfer").spinner({
-		min:0,
-		max:balance,
-		step:.01,
-		culture:'en-US',
-		numberFormat: "d",
-		change: function(event,ui){
-			var val;
-			if ($(this).val() < 0){
-				val = 0;
-			}else{
-				var val = Math.min(Number($(this).val()), balance);
-			}
-			$(this).val(val.toFixed(2));
-			var total = left_balance + right_balance; 
-			right_balance = val;
-			left_balance = total - right_balance;
-
-			$("#left-balance").text("$"+left_balance.toFixed(2));
-			$("#right-balance").text("$"+right_balance.toFixed(2));
-			refreshDisplay();
-			console.log("CHANGE");
-		}
-	});
-	$("#transfer").keypress(function(e){
-		if (e.keyCode==13){
-			$("#transfer").spinner('option','change').call($("#transfer"));
-			$("#transfer").blur();
-		}
-	});
-	$("#organize-button").click(refreshDisplay);
-
-	$("#transfer").val("0.00");
-//	$("#transfer").spinner('option','culture','en-US');
-})
-
 balance = 23.50;
+MARGIN_LEFT_LEFT = 20;
+MARGIN_TOP = 50;
+MARGIN_LEFT_RIGHT = 470;
 
 function addMoney(denomination, num, side){
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
-			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYLeft+"px");
 			$("#"+idNum).css("left",startXLeft+"px");
 			$("#"+idNum).draggable({
@@ -103,7 +29,7 @@ function addMoney(denomination, num, side){
 		startYLeft += 30;
 	}else if (side =='right'){
 		for (var i = 0; i < num; i++){
-			$("#window-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
+			$("#drag-and-drop-wrapper").append('<img id='+idNum+' class="money" src="images/'+denomination+'.png" height='+imgHeight(denomination)+'/>');
 			$("#"+idNum).css("top",startYRight+"px");
 			$("#"+idNum).css("left",startXRight+"px");
 			$("#"+idNum).draggable({
@@ -276,10 +202,10 @@ function monetaryValue(denomination){
 
 function refreshDisplay(){
 	item_locations={};
-	startXLeft = 20;
-	startYLeft = 50;
-	startXRight = 470;
-	startYRight = 50;
+	startXLeft = MARGIN_LEFT_LEFT;
+	startYLeft = MARGIN_TOP;
+	startXRight = MARGIN_LEFT_RIGHT;
+	startYRight = MARGIN_TOP;
 	idNum=0;
 
 	$('.money').remove();
@@ -298,3 +224,84 @@ function refreshDisplay(){
     $("#left-balance").text("$"+left_balance.toFixed(2));
     $("#right-balance").text("$"+right_balance.toFixed(2));
 }
+
+$(document).ready(function(){
+	left_balance = balance;
+	right_balance = 0;
+	refreshDisplay();
+
+	$("#left-window").droppable({
+		drop: function(event,ui){
+			if (item_locations[ui.draggable.attr('id')] === 'right' ){
+				var source = ui.draggable.attr('src').split('/');
+				var value = monetaryValue(source[source.length - 1].split('.')[0]);
+				left_balance += value;
+				right_balance -= value;
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				item_locations[ui.draggable.attr('id')] = 'left';
+				var prevTransferValue = Number($("#transfer").val());
+				var newValue = prevTransferValue - value;
+				$("#transfer").val(newValue.toFixed(2));
+			}
+		},
+		tolerance: "intersect"
+	});
+	
+	$("#right-window").droppable({		
+		drop: function(event,ui){
+			if (item_locations[ui.draggable.attr('id')] === 'left'){
+				var source = ui.draggable.attr('src').split('/');
+				var value = monetaryValue(source[source.length - 1].split('.')[0]);
+				right_balance += value;
+				left_balance -= value;
+				$("#left-balance").text("$"+left_balance.toFixed(2));
+				$("#right-balance").text("$"+right_balance.toFixed(2));
+				item_locations[ui.draggable.attr('id')] = 'right';
+				var prevTransferValue = Number($("#transfer").val());
+				var newValue = prevTransferValue + value;
+				$("#transfer").val(newValue.toFixed(2)); //use val instead of .spinner('value') to not trigger 'change'
+			}
+		},
+		tolerance: "intersect"
+	});
+
+	$("#transfer").spinner({
+		min:0,
+		max:balance,
+		step:.01,
+		culture:'en-US',
+		numberFormat: "d",
+		change: function(event,ui){
+			var val;
+			if ($(this).val() < 0){
+				val = 0;
+			}else{
+				var val = Math.min(Number($(this).val()), balance);
+			}
+			$(this).val(val.toFixed(2));
+			var total = left_balance + right_balance; 
+			right_balance = val;
+			left_balance = total - right_balance;
+
+			$("#left-balance").text("$"+left_balance.toFixed(2));
+			$("#right-balance").text("$"+right_balance.toFixed(2));
+			refreshDisplay();
+			console.log("CHANGE");
+		}
+	});
+	$("#transfer").keypress(function(e){
+		if (e.keyCode==13){
+			$("#transfer").spinner('option','change').call($("#transfer"));
+			$("#transfer").blur();
+		}
+	});
+	$("#organize-button").click(refreshDisplay);
+
+	$("#transfer").val("0.00");
+
+	$("#add-money-button").click(function(){
+		$('#modal-add-money').modal({show:true});
+	});
+//	$("#transfer").spinner('option','culture','en-US');
+})

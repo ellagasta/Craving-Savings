@@ -1,5 +1,7 @@
+goalID = 1;
 function getHtmlForNewGoal(name, amount) {
-	var html = '<div class="col-md-3"><div class="panel panel-default goal hoverable-panel"><div class="non-hover non-hover-div"><h4 class="text-center">';
+	var html = '<div class="col-md-3" id="goal'+goalID+'"><div class="panel panel-default goal hoverable-panel"><div class="non-hover non-hover-div"><h4 class="text-center">';
+	goalID+=1;
 	html += name;
 	html += '</h4><img src="http://placehold.it/350X350" class="goal-icon center-block"><div class="progress"><div class="progress-bar" style="width: 0%;"></div></div><h4 class="text-center progress-amount">';
 	html += '$0.00/$' + amount;
@@ -7,6 +9,24 @@ function getHtmlForNewGoal(name, amount) {
 	return html;
 }
 
+var hoverFunc = function() {
+	console.log("hovering!" + $(this))
+	$(this).find('.hover-div').fadeTo("fast", 1);
+	$(this).find('.non-hover-div').fadeTo("fast", .5);
+}
+
+var unhoverFunc = function() { 
+	console.log('non-hovering!',$(this))
+    $(this).find('.hover-div').fadeTo("fast", 0);
+    $(this).find('.non-hover-div').fadeTo("fast", 1);
+}
+
+var newGoalClick = function(){
+	$(getHtmlForNewGoal("Test", '5.00')).insertBefore('.add-new-goal-col');
+	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
+	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
+	$('.hoverable-panel').hover(hoverFunc, unhoverFunc);
+}
 $(function () {
 	$('#myTab a:first').tab('show');
 
@@ -15,18 +35,9 @@ $(function () {
 		$(this).tab('show');
 	});
 
-	$('.hoverable-panel').hover(function() {
-		console.log("hovering!" + this);
-		$(this).find('.hover-div').fadeTo("fast", 1);
-		$(this).find('.non-hover-div').fadeTo("fast", .5);
-	}, function() { 
-	    $(this).find('.hover-div').fadeTo("fast", 0);
-	    $(this).find('.non-hover-div').fadeTo("fast", 1);
-	});
+	$('.hoverable-panel').hover(hoverFunc, unhoverFunc);
 
-	$('.new-goal').click(function() {
-		$(getHtmlForNewGoal("Test", '5.00')).insertBefore('.add-new-goal-col');
-	});
+	$('.new-goal').click(newGoalClick);
 
 	$('#openBtn').click(function(){
 		$('#myModal').modal({show:true});

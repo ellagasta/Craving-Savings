@@ -1,113 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Craving Savings</title>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="goalsEdit.js"></script>
-    <!--<script type="text/javascript" src="jquery-ui.js"></script>-->
-    <script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="goalsEdit.js"></script>
-    <script type="text/javascript" src="homeScreen.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-	<link rel="icon" type="image/png" href="images/favicon.ico">
-
-</head>
-
-<body>
-
-<!-- 	<div class="row" id="heading-row">
-		<div class="col-md-3 text-left"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
-		<div class="col-md-6 text-center available-funds">John's Available Funds: $23.50</div>
-		<div class="col-md-1"></div>
-		<div class="col-md-2 text-right">
-					<button type="button" class="btn btn-default btn-lg">
-				<img src="images/spendnow-btn-copy.png" id="spend-now-btn">
-			</button>
-			<button class="btn btn-default" id="spend-now-btn">
-				<img src="images/spendnow-btn-copy.png" width="100%" height="100%">
-			</button>
-		</div>
-	</div> -->
-
-	<div class="row" id="heading-row">
-		<div class="col-md-3 text-left"> <img src="images/logo.png" alt="Logo" id="logo"> </div>
-		<div class="col-md-6 text-center available-funds">John's Available Funds: $23.50</div>
-		<div class="col-md-1"></div>
-		<div class="col-md-2 text-right">
-			<button class="btn btn-default" id="spend-now-btn">
-				<img src="images/spendnow-btn-copy.png" width="100%" height="100%">
-			</button>
-		</div>
+<div id="edit-goal">
+	<div id="goalname-input">
+		<input id="makeEditable" value="Goal Name Here"></input>
 	</div>
+	<div id="back-btn">
+		<button  type="button" class="btn btn-default" id="back">
+			<img src="images/back-icon.png" width="100%" height="100%">
+		</button>
+	</div>
+	<div class="row">
 
-	<div class="container">
-		<ul class="nav nav-tabs" id="myTab">
-			<li class="active">
-				<a href="#goals"><h4>Goals</h4></a>
-			</li>
-			<li>
-				<a href="#earn"><h4>Earn</h4></a>
-			</li>
-			<li>
-				<a href="#history"><h4>History</h4></a>
-			</li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane active" id="goals">
-				<div id="goalname-input">
-					<input id="makeEditable" value="Goal Name Here"></input>
+		<div class="col-md-4" id="goal-photobox">
+			<div class="hoverable-panel">
+				<div class="non-hover non-hover-div">
+					<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
 				</div>
-				<div id="back-btn">
-					<button  type="button" class="btn btn-default" id="back">
-						<img src="images/back-icon.png" width="100%" height="100%">
-					</button>
-				</div>
-				<div class="row">
-					<div class="col-md-4" id="goal-photobox">
-						<div class="hoverable-panel">
-							<div class="non-hover non-hover-div">
-								<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">
-							</div>
-							<div class="hover-add hover-div" style="text-align:center;">
-								<button id="photoBtn" class="btn btn-default hover-btn-photo">Upload Photo</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-8 text-center" id="goal-info">
-						<div class="row" id="goal-amtedit">
-							 $0.00 of <span> $<input id="goal-total" value="0"></span>
-						</div>
-					</div>
-				</div>
-				<div class="row" style="padding-right:0px;padding-left:0px;">
-					<div class="col-md-9">
-						<div class="progress" id="maingoal-bar">
-							<div class="progress-bar progress-bar-success progress-bar-striped" id="editgoal-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-						    	<span id="progress-text"> 0% Complete </span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<button type="button" class="btn btn-default btn-lg progress-row-btn">Cancel</button>
-						<button type="button" class="btn btn-default btn-lg progress-row-btn save-goal">Save</button>
-					</div>
+				<div class="hover-add hover-div" style="text-align:center;">
+					<button id="photoBtn" class="btn btn-default hover-btn-photo">Upload Photo</button>
 				</div>
 			</div>
 		</div>
-		<!--<div class="tab-pane" id="earn">Earn $$$</div> -->
-		<!--<div class="tab-pane" id="history">History...</div> -->
+		<div class="col-md-8 text-center" id="goal-info">
+			<div class="row" id="goal-amtedit">
+				 $0.00 of <span> $<input id="goal-total" value="0"></span>
+			</div>
+		</div>
 	</div>
-<!-- <<<<<<< HEAD
- -->
+
+
+
+	<div class="row" style="padding-right:0px;padding-left:0px;">
+		<div class="col-md-9">
+			<div class="progress" id="maingoal-bar">
+				<div class="progress-bar progress-bar-success progress-bar-striped" id="editgoal-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+			    	<span id="progress-text"> 0% Complete </span> 
+
+
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-default btn-lg progress-row-btn">Cancel</button>
+			<button type="button" class="btn btn-default btn-lg progress-row-btn save-goal">Save</button>
+		</div>
+	</div>
 	<div id="photoModal" class="modal fade" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -132,8 +67,4 @@
 	</div>
 </body>
 </html>
-<!-- =======
-</body>
-</html>
->>>>>>> weird leftover text in goalsedit
- -->
+</div>

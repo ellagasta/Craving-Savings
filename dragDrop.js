@@ -3,6 +3,22 @@ MARGIN_LEFT_LEFT = 20;
 MARGIN_TOP = 50;
 MARGIN_LEFT_RIGHT = 470;
 
+$(document).ready(function(){
+	modal = $('#modal-add-money').html();
+   	createModalAddMoney();
+
+	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
+	$(".btn.btn-default.hover-btn-bottom").click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("goal")[1];
+		addMoneyClick(0);
+	});
+	$('#spend-now-btn').click(function(){
+		$('#modal-add-money').modal({show:true});
+		$('#modal-add-money').val("-1");
+	});
+
+});
+
 function addMoney(denomination, num, side){
 	if (side =='left'){
 		for (var i = 0; i < num; i++){
@@ -21,7 +37,6 @@ function addMoney(denomination, num, side){
 
 			item_locations[idNum] = 'left';
 			idNum += 1;
-
 			startYLeft += 20;
 	    	startXLeft += 20;
 		}
@@ -222,30 +237,6 @@ function refreshDisplay(){
     $("#left-balance").text("$"+left_balance.toFixed(2));
     $("#right-balance").text("$"+right_balance.toFixed(2));
 }
-var modal;
-$(document).ready(function(){
-	modal = $('#modal-add-money').html();
-   	createModalAddMoney();
-
-	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
-	$('#spend-now-btn').click(function(){
-		$('#modal-add-money').modal({show:true});
-	}
-)
-//	$("#transfer").spinner('option','culture','en-US');
-})
-
-var addMoneyClick = function(){
-	$('#modal-add-money').modal({show:true});
-}
-
-var openGoalClick = function(){
-	$("#home-screen").hide();
-	$("#goals").append(goalDisplay);
-
-	console.log("open goal");
-}
 
 var createModalAddMoney = function(){
 	left_balance = balance;
@@ -321,15 +312,38 @@ var createModalAddMoney = function(){
 	$("#cancel-transaction-button").click(function(){
 		$('#modal-add-money').modal('toggle');
 	});
+	$("#confirm-transaction-button").unbind();
 	$("#confirm-transaction-button").click(function(){
 		var transfer_amount = Number($("#right-balance").text().split("$")[1]);
 		balance-=transfer_amount;
 		console.log("transfer "+transfer_amount+" to leave a balance of " + balance+".");
-	   $('#modal-add-money').modal('toggle');
-	   var titleText = $('.available-funds').text().split("$");
-	   var nonbalanceText = titleText[titleText.length-2];
-	   var balanceText = titleText[titleText.length-1];
-	   $('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
+	    $('#modal-add-money').modal('toggle');
+	    var id=$("#modal-add-money").val();
+	    console.log("id",id);
+ 		var cur_value = $("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text();
+ 		var new_value = Number(cur_value)+Number(transfer_amount)
+ 		$("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text(new_value.toFixed(2));
+ 		var max =  $("#goal-menu-"+id).find('.row.goal-amt.display').find('.max-val').text();
+
+ 		if (id==0){
+
+ 			var savedText = $("#goal"+id).find('.non-hover.non-hover-div').find('.text-center.savings-balance').text();
+ 			var moneySaved = savedText.split(" ")[0].split("$")[1];
+ 			var textSaved = savedText.split(" ")[1];
+			console.log(savedText,moneySaved,textSaved,new_value);
+ 			$("#goal"+id).find('.non-hover.non-hover-div').find('.text-center').text("$"+new_value.toFixed(2)+" "+textSaved);
+ 		}else{
+			$("#goal"+id).find(".progress-amount").text(new_value.toFixed(2)+'/'+Number(max).toFixed(2));
+			$('#goal'+id).find(".progress-bar").css("width",Number(new_value)/Number(max)*100+"%");			
+		}
+		$("#goal-menu-"+id).find(".maingoal-progress").css("width",Number(new_value)/Number(max)*100+"%");
+		$("#goal-menu-"+id).find(".progress-bar-text").text(Number(new_value)/Number(max)*100);
+
+
+		var titleText = $('.available-funds').text().split("$");
+		var nonbalanceText = titleText[titleText.length-2];
+		var balanceText = titleText[titleText.length-1];
+		$('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
 	});
 
 	$('#modal-add-money').on('hidden.bs.modal', function(){
@@ -342,25 +356,3 @@ var createModalAddMoney = function(){
 	$("#transfer").val("0.00");
 }
 
-
-var goalDisplay='<div id="goal"><div class="row">';
-goalDisplay+='<div class="col-md-4" id= "goal-photobox">';
-goalDisplay+='<img id="goal-img" src="http://placehold.it/400X400" class="goal-pic center-block">';
-goalDisplay+='</div><div class="col-md-8 text-center" id="goal-info">';
-goalDisplay+='<div class="row" id="goal-name"><div id="makeEditable" contenteditable="true">Goal Name Here</div></div>';
-goalDisplay+='<div class="row" id="goal-amt">$8.00 of $10.00</div>';
-goalDisplay+='<div class="row" id="goal-btns">'
-goalDisplay+='<button type="button" class="btn btn-default btn-lg" id="add-togoal">Add $ To Goal</button></div></div></div>';
-goalDisplay+='<div class="row" style="padding-right:0px;padding-left:0px;"><div class="col-md-9">';
-goalDisplay+='<div class="progress" id="maingoal-bar"><div class="progress-bar progress-bar-success progress-bar-striped" id="maingoal-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">';
-goalDisplay+='80% Complete</div></div></div><div class="col-md-2"><button type="button" class="btn btn-default btn-lg">Delete</button>';
-goalDisplay+='</div></div></div>'
-
-
-$.ajax({
-    url : "goalsEdit.html",
-    async:false,            //this is the trick
-    success : function(result){
-    			console.log(result);
-               } 
-    });

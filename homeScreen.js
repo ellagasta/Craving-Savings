@@ -10,13 +10,11 @@ function getHtmlForNewGoal(name, amount) {
 }
 
 var hoverFunc = function() {
-	console.log("hovering!" + $(this))
 	$(this).find('.hover-div').fadeTo("fast", 1);
 	$(this).find('.non-hover-div').fadeTo("fast", .5);
 }
 
 var unhoverFunc = function() { 
-	console.log('non-hovering!',$(this))
     $(this).find('.hover-div').fadeTo("fast", 0);
     $(this).find('.non-hover-div').fadeTo("fast", 1);
 }

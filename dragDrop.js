@@ -98,7 +98,6 @@ function splitDenomination(denomination, idNum){
 		startYRight = Number($("#"+idNum).css("top").split("px")[0]);
 	}
 	for (var denomination in newMoney){
-		console.log(denomination,newMoney[denomination])
 		addMoney(denomination,newMoney[denomination],item_locations[idNum]);
 	}
 	$("#"+idNum).remove();
@@ -140,7 +139,6 @@ function divideDenomination(balance){
 
 	sum = hundreds*100+fifties*50+twenties*20+tens*10+fives*5+ones+quarters*.25+dimes*.1+nickels*.05+pennies*.01
 	if (Number(sum.toFixed(2))!=original_balance){
-		console.log(sum.toFixed(2),original_balance);
 		alert("Denomination devision does not add up");
 	}
 	return {
@@ -224,8 +222,29 @@ function refreshDisplay(){
     $("#left-balance").text("$"+left_balance.toFixed(2));
     $("#right-balance").text("$"+right_balance.toFixed(2));
 }
-
+var modal;
 $(document).ready(function(){
+	modal = $('#modal-add-money').html();
+   	createModalAddMoney();
+
+	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
+	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
+	$('#spend-now-btn').click(function(){
+		$('#modal-add-money').modal({show:true});
+	}
+)
+//	$("#transfer").spinner('option','culture','en-US');
+})
+
+var addMoneyClick = function(){
+	$('#modal-add-money').modal({show:true});
+}
+
+var openGoalClick = function(){
+	console.log("open goal");
+}
+
+var createModalAddMoney = function(){
 	left_balance = balance;
 	right_balance = 0;
 	refreshDisplay();
@@ -287,7 +306,6 @@ $(document).ready(function(){
 			$("#left-balance").text("$"+left_balance.toFixed(2));
 			$("#right-balance").text("$"+right_balance.toFixed(2));
 			refreshDisplay();
-			console.log("CHANGE");
 		}
 	});
 	$("#transfer").keypress(function(e){
@@ -297,20 +315,26 @@ $(document).ready(function(){
 		}
 	});
 	$("#organize-button").click(refreshDisplay);
+	$("#cancel-transaction-button").click(function(){
+		$('#modal-add-money').modal('toggle');
+	});
+	$("#confirm-transaction-button").click(function(){
+		var transfer_amount = Number($("#right-balance").text().split("$")[1]);
+		balance-=transfer_amount;
+		console.log("transfer "+transfer_amount+" to leave a balance of " + balance+".");
+	   $('#modal-add-money').modal('toggle');
+	   var titleText = $('.available-funds').text().split("$");
+	   var nonbalanceText = titleText[titleText.length-2];
+	   var balanceText = titleText[titleText.length-1];
+	   $('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
+	});
+
+	$('#modal-add-money').on('hidden.bs.modal', function(){
+		var newModal = '<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">'+modal+'</div';
+    	$(this).replaceWith(newModal);
+    	createModalAddMoney();
+	});
+
 
 	$("#transfer").val("0.00");
-
-	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
-
-
-//	$("#transfer").spinner('option','culture','en-US');
-})
-
-var addMoneyClick = function(){
-	$('#modal-add-money').modal({show:true});
-}
-
-var openGoalClick = function(){
-	console.log("open goal");
 }

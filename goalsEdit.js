@@ -11,7 +11,7 @@ $(document).ready(function(){
 			if ($(this).val() < 0){
 				val = 0;
 			}else{
-				var val = this.val();
+				var val = Number($(this).val());
 			}
 			$(this).val(val.toFixed(2));
 
@@ -24,4 +24,4 @@ $(document).ready(function(){
 			$("#goal-total").blur();
 		}
 	});
-}
+});

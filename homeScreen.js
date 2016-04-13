@@ -43,16 +43,17 @@ var newGoalClick = function(){
 
 }
 
-var uploadLightsaber = function(){
+var uploadLightsaber = function(id){
 	console.log("upload the lightsaber");
-	$("#uploadPhotoBox").hide();
-	$("#lightsaber").show();
+	$("#photoModal"+id).find(".uploadPhotoBox").hide();
+	$("#photoModal"+id).find(".lightsaber").show();
 }
 
-var replacePhotoWithLightSaber = function(){
-	$("#goal-img").attr("src", "images/lightsaber.png");
-	$("#goal-img").css("border", "1px solid black");
-	$("#goal-img").css("border-radius", "4px");
+var replacePhotoWithLightSaber = function(id){
+	console.log($("#photoModal"+id).find(".goal-pic"));
+	$("#goal-menu-"+id).find(".goal-img").attr("src", "images/lightsaber.png");
+	$("#goal-menu-"+id).find(".goal-img").css("border", "1px solid black");
+	$("#goal-menu-"+id).find(".goal-img").css("border-radius", "4px");
 }
 
 
@@ -91,13 +92,6 @@ $(document).ready(function () {
 
 	$('.new-goal').click(newGoalClick);
 
-	$('#uploadPhotoBox').click(function(){
-		uploadLightsaber();
-	})
-
-	$('#submitPhoto').click(function(){
-		replacePhotoWithLightSaber();
-	})
 
 	$.ajax({
     url : "goals.html",
@@ -215,7 +209,19 @@ var addNewGoal = function(){
 	$("#goal-menu-"+thisID).find(".goal-pic").click(function(){
 		var id = $(this).parent().parent().parent().attr("id").split("goal-menu-")[1];
 		$("#photoModal"+id).modal({show:true});
+		$("#photoModal"+id).find(".lightsaber").hide();
 	});
+
+
+	$("#goal-menu-"+thisID).find('.uploadPhotoBox').click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("photoModal")[1];
+		uploadLightsaber(id);
+	});
+
+	$("#goal-menu-"+thisID).find('.submitPhoto').click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("photoModal")[1];		
+		replacePhotoWithLightSaber(id);
+	})
 
 	$(".edit-goal-btn").click(function(){
 		var id = Number($(this).parent().parent().parent().attr("id").split("goal-menu-")[1]);

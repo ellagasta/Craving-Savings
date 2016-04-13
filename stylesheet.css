@@ -145,7 +145,7 @@
 	width: 400px;
 }
 
-#uploadPhotoBox{
+.uploadPhotoBox{
 	height:200px;
 	line-height:200px;
 	text-align: center;
@@ -153,7 +153,7 @@
 	border: 1px solid black;
 	border-radius: 4px;
 }
-#lightsaber{
+.lightsaber{
 	display:none;
 	height:200px;
 	text-align:center;

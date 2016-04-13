@@ -190,7 +190,8 @@ var addNewGoal = function(){
 	$(".purchase-goal").click(function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
 		confirmPurchaseClick(id);
-	})
+		console.log("confirm purchase");
+	});
 
 	$('#deleteModal').attr('id','deleteModal'+thisID);
 	$('#deleteModal'+thisID).find('.btn.btn-danger').first().click(function(){

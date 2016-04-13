@@ -91,10 +91,6 @@ $(document).ready(function () {
 
 	$('.new-goal').click(newGoalClick);
 
-	$('#photoBtn').click(function(){
-		$('#photoModal').modal({show:true});
-	})
-
 	$('#uploadPhotoBox').click(function(){
 		uploadLightsaber();
 	})
@@ -182,6 +178,7 @@ var addNewGoal = function(){
 	var thisID = goalID-1;
 	$("#goals").append(goal_html);
 	$("#goal-menu").hide();
+	$("#goal-menu").attr("id","goal-menu-"+thisID);
 	$(".add-togoal").click(function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
 		addMoneyClick(id);
@@ -193,6 +190,7 @@ var addNewGoal = function(){
 	})
 
 	$('#deleteModal').attr('id','deleteModal'+thisID);
+
 	$('#deleteModal'+thisID).find('.btn.btn-danger').first().click(function(){
 		var id = $(this).parent().parent().parent().parent().attr("id").split("deleteModal")[1];
 
@@ -211,7 +209,12 @@ var addNewGoal = function(){
 		var balanceText = titleText[titleText.length-1];
 		$('.available-funds').text(nonbalanceText+"$"+balance.toFixed(2));
 	   	createModalAddMoney();
+	});
 
+	$('#photoModal').attr('id','photoModal'+thisID);
+	$("#goal-menu-"+thisID).find(".goal-pic").click(function(){
+		var id = $(this).parent().parent().parent().attr("id").split("goal-menu-")[1];
+		$("#photoModal"+id).modal({show:true});
 	});
 
 	$(".edit-goal-btn").click(function(){
@@ -272,7 +275,6 @@ var addNewGoal = function(){
 	
 
 
-	$("#goal-menu").attr("id","goal-menu-"+thisID);
 	$(".delete-goal-btn").click(function(){
 		var id = Number($(this).parent().parent().parent().attr("id").split("goal-menu-")[1]);
 		$('#deleteModal'+id).modal({show:true});

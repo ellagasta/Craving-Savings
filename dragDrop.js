@@ -224,8 +224,27 @@ function refreshDisplay(){
     $("#left-balance").text("$"+left_balance.toFixed(2));
     $("#right-balance").text("$"+right_balance.toFixed(2));
 }
-
+var modal;
 $(document).ready(function(){
+	modal = $('#modal-add-money').html();
+	console.log(modal);
+   	createModalAddMoney();
+
+	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
+	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
+//	$("#transfer").spinner('option','culture','en-US');
+})
+
+var addMoneyClick = function(){
+	$('#modal-add-money').modal({show:true});
+}
+
+var openGoalClick = function(){
+	console.log("open goal");
+}
+
+var createModalAddMoney = function(){
+	console.log("createModalAddMoney");
 	left_balance = balance;
 	right_balance = 0;
 	refreshDisplay();
@@ -297,20 +316,21 @@ $(document).ready(function(){
 		}
 	});
 	$("#organize-button").click(refreshDisplay);
+	$("#cancel-transaction-button").click(function(){
+		$('#modal-add-money').modal('toggle');
+	});
+	$("#confirm-transaction-button").click(function(){
+		console.log("transfer "+$("#right-balance").text()+".");
+	   $('#modal-add-money').modal('toggle');
+	});
+
+	$('#modal-add-money').on('hidden.bs.modal', function(){
+		console.log("RESET");
+		var newModal = '<div id ="modal-add-money" class = "modal fade" role="dialog" tabindex="-1">'+modal+'</div';
+    	$(this).replaceWith(newModal);
+    	createModalAddMoney();
+	});
+
 
 	$("#transfer").val("0.00");
-
-	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
-	$(".btn.btn-default.hover-btn-bottom").click(addMoneyClick);
-
-
-//	$("#transfer").spinner('option','culture','en-US');
-})
-
-var addMoneyClick = function(){
-	$('#modal-add-money').modal({show:true});
-}
-
-var openGoalClick = function(){
-	console.log("open goal");
 }

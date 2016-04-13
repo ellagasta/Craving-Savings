@@ -191,20 +191,24 @@ body {
 	width: 150px;
 }
 
-#makeEditable:focus{
+/*#makeEditable:focus{
     box-shadow: 0 0 2px blue;
     font-size: 50px;
     width: 350px;
-    position: left;
+    position: absolute;
+    left: 30%;
     text-align: center;
+    padding-bottom: 30px;
 }
-
+*/
 #makeEditable {
-	font-size: 50px;
-	display: 30px;
-	position: left;
-	text-align: center;
-}
+    font-size: 50px;
+    text-align: center;
+    width: 500px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+*/}
 
 #maingoal-bar {
 	height: 50px;
@@ -222,9 +226,9 @@ body {
 }
 
 #goal-info {
-	width: 600px;
-	position: relative;
-	padding-left: 30px;
+    width: 720px;
+    position: relative;
+    padding-left: 30px;
 }
 
 #goal-photobox {
@@ -233,19 +237,33 @@ body {
 	position: relative;
 }
 
-#goal-amt {
-	position: relative;
+#goal-amtedit {
+	position: absolute;
 	font-size: 40px;
 	text-align: center;
-	padding-top: 35px;
+	margin-top: 120px;
 	word-spacing: 7px;
+	left:37%;
 }
+
+#goal-amt{
+	position: absolute;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 60px;
+    word-spacing: 7px;
+    left: 33%;
+}
+
 
 #goal-btns {
 	position: center;
 	text-align: center;
 	padding-top: 50px;
+}
 
+#add-togoal {
+	margin-top: 120px;
 }
 
 #delete-goal {

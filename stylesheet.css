@@ -24,12 +24,18 @@
 	border:1px solid black;
 /*	z-index:150;
 */}
-#arrow{
+#arrow-block{
 	display:inline-block;
 	position:absolute;
 	left:44.5%;
 	padding-left:1px;
-	top:45%;
+	top:40%;
+}
+#transfer-arrow{
+	position:absolute;
+	margin-top:10px;
+	height:300%;
+	width:100%;
 }
 #transfer{
 	width:50px;
@@ -38,7 +44,7 @@
 	display:inline-block;
 	position:absolute;
 	top:80%;
-	left:45.5%;
+	left:43.5%;
 }
 .money{
 	position:absolute;
@@ -50,20 +56,9 @@
 	width: 600px;
 	margin: 10px 17%;
 }
-.modal-header.add-money-header{
-	padding:0px;
-}
-.modal-body.add-money-body{
-	padding:0px;
-}
 .footer-button-wrapper{
 	float:right;
 	margin-right:5%;
-}
-.add-money-header{
-	margin-top:2%;
-	margin-left:5%;
-	font-size:30px;
 }
 #drag-and-drop-wrapper{
 	position:relative;

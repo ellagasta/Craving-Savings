@@ -50,20 +50,9 @@
 	width: 600px;
 	margin: 10px 17%;
 }
-.modal-header.add-money-header{
-	padding:0px;
-}
-.modal-body.add-money-body{
-	padding:0px;
-}
 .footer-button-wrapper{
 	float:right;
 	margin-right:5%;
-}
-.add-money-header{
-	margin-top:2%;
-	margin-left:5%;
-	font-size:30px;
 }
 #drag-and-drop-wrapper{
 	position:relative;

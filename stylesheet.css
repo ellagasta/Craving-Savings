@@ -11,9 +11,9 @@
     display: inline-block;
 	top:5%;
 	left:2%;
-	border:1px solid black;
-/*	z-index:150;
-*/}
+	border:3px solid black;
+	border-radius:4px;
+}
 #right-window{
 	height:90%;
 	width:40%;
@@ -21,9 +21,9 @@
     display: inline-block;
 	top:5%;
 	right:2%;
-	border:1px solid black;
-/*	z-index:150;
-*/}
+	border:3px solid black;
+	border-radius:4px;
+}
 #arrow-block{
 	display:inline-block;
 	position:absolute;

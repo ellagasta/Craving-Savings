@@ -1,6 +1,14 @@
 goalID = 1;
 goal_html="";
 goal_edit_html = "";
+purchase_modal_html = '<div id="purchaseModal" class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog">';
+purchase_modal_html+='<div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button>';
+purchase_modal_html+='<h3>Confirm Purchase</h3></div><div class="modal-body"><h4>Congratulations!';
+purchase_modal_html+=" You've reached this goal. Press";
+purchase_modal_html+=' "Complete" to make the purchase.</h4></div><div class="modal-footer">';
+purchase_modal_html+= '<button type="button" class="btn btn-danger cancel-btn" data-dismiss="modal">Cancel</button>';
+purchase_modal_html+= '<button type="button" class="btn btn-success purchase-btn" data-dismiss="modal">Complete</button></div></div></div></div>'
+
 
 function getHtmlForNewGoal(name, amount) {
 	var html = '<div class="col-md-3" id="goal'+goalID+'"><div class="panel panel-default goal hoverable-panel"><div class="non-hover non-hover-div"><h4 class="text-center goal-square-name">';
@@ -26,11 +34,6 @@ var newGoalClick = function(){
 	$(getHtmlForNewGoal("Goal Name Here", '10.00')).insertBefore('.add-new-goal-col');
 	$(".btn.btn-default.hover-btn-top").click(openGoalClick);
 	$(".btn.btn-default.hover-btn-bottom.addmode").click(function(){
-		var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
-		console.log(id);
-		addMoneyClick(id);
-	});
-	$(".btn.btn-default.hover-btn-bottom.purchasemode").click(function(){
 		var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
 		console.log(id);
 		addMoneyClick(id);
@@ -178,6 +181,7 @@ $(document).ready(function () {
 var addNewGoal = function(){
 	var thisID = goalID-1;
 	$("#goals").append(goal_html);
+	$('.tab-content').append(purchase_modal_html);
 	$("#goal-menu").hide();
 	$("#goal-menu").attr("id","goal-menu-"+thisID);
 	$(".add-togoal").click(function(){
@@ -217,6 +221,28 @@ var addNewGoal = function(){
 		var id = $(this).parent().parent().parent().attr("id").split("goal-menu-")[1];
 		$("#photoModal"+id).modal({show:true});
 		$("#photoModal"+id).find(".lightsaber").hide();
+	});
+	console.log("purchasemodal",thisID)
+	$('#purchaseModal').attr('id','purchaseModal'+thisID);
+	$("#purchaseModal"+thisID).find(".cancel-btn").click(function(){
+		$(this).parent().parent().parent().parent().modal({show:false});
+	});
+	$("#purchaseModal"+thisID).find(".purchase-btn").click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("purchaseModal")[1];
+		$("#goal-menu-"+id).hide();
+		$("#home-screen").show();
+		$('#goal-menu-'+id).detach();
+		$('#goal'+id).detach();
+	});
+
+	$("#goal-menu-"+thisID).find(".purchase-goal.purchasemode").click(function(){
+		var id = $(this).parent().parent().parent().parent().attr("id").split("goal-menu-")[1];
+		$("#purchaseModal"+id).modal({show:true});
+	});
+
+	$("#goal"+thisID).find(".hover-btn-bottom.purchasemode").click(function(){
+		var id = $(this).parent().parent().parent().attr("id").split("goal")[1];
+		$("#purchaseModal"+id).modal({show:true});
 	});
 
 

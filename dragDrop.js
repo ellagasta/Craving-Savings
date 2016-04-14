@@ -340,7 +340,7 @@ var createModalAddMoney = function(){
  			var moneySaved = savedText.split(" ")[0].split("$")[1];
  			var textSaved = savedText.split(" ")[1];
 			console.log(savedText,moneySaved,textSaved,new_value);
- 			$("#goal"+id).find('.non-hover.non-hover-div').find('.text-center').text("$"+new_value.toFixed(2)+" "+textSaved);
+ 			$("#goal"+id).find('.non-hover.non-hover-div').find('.text-center.savings-balance').text("$"+new_value.toFixed(2)+" "+textSaved);
  		}else{
 			$("#goal"+id).find(".progress-amount").text(new_value.toFixed(2)+'/'+Number(max).toFixed(2));
 			$('#goal'+id).find(".progress-bar").css("width",Number(new_value)/Number(max)*100+"%");			

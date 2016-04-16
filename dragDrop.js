@@ -1,6 +1,6 @@
 balance = 23.50;
 MARGIN_LEFT_LEFT = 20;
-MARGIN_TOP = 50;
+MARGIN_TOP = 65;
 MARGIN_LEFT_RIGHT = 470;
 
 $(document).ready(function(){
@@ -173,15 +173,15 @@ function divideDenomination(balance){
 function imgHeight(denomination){
 	switch(denomination){
 		case "quarter":
-			return "50px";
+			return "65px";
 		case "dime": 
-			return "30px";
+			return "45px";
 		case "nickel":
-			return "40px";
+			return "55px";
 		case "penny":
-			return "30x";
+			return "45x";
 		default:
-			return "50px";
+			return "65px";
 	}
 }
 

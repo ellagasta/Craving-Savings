@@ -1,7 +1,7 @@
 balance = 23.50;
 MARGIN_LEFT_LEFT = 20;
 MARGIN_TOP = 65;
-MARGIN_LEFT_RIGHT = 470;
+MARGIN_LEFT_RIGHT = 525;
 
 $(document).ready(function(){
 	modal = $('#modal-add-money').html();
@@ -291,9 +291,10 @@ var createModalAddMoney = function(){
 			var max_val = Number($("#goal-menu-"+id).find(".max-val").text());
 			var cur_val = Number($("#goal-menu-"+id).find(".display").find(".cur-val").text());
 			console.log(Number($("#goal-menu-"+id).find(".max-val").text()));
+			console.log(cur_val, max_val);
 			if ($(this).val() < 0){
 				val = 0;
-			}else if ($(this).val() > max_val - cur_val){
+			}else if ($(this).val() + cur_val > max_val){
 				val = max_val-cur_val;
 			}else{
 				val = Number($(this).val());
@@ -324,15 +325,23 @@ var createModalAddMoney = function(){
 	$("#confirm-transaction-button").unbind();
 	$("#confirm-transaction-button").click(function(){
 		var transfer_amount = Number($("#right-balance").text().split("$")[1]);
+		var max =  Number($("#goal-menu-"+id).find('.row.goal-amt.display').find('.max-val').text()); // these are currently zero
+		var cur_value = Number($("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text()); // these are currently zero
+		if ((transfer_amount + cur_value) > max) {
+			transfer_amount = max - cur_value;
+			console.log("max: " + max);
+			console.log("cur_value: " + cur_value);
+			console.log("transfer: " + transfer_amount);
+		}
 		balance-=transfer_amount;
 		console.log("transfer "+transfer_amount+" to leave a balance of " + balance+".");
 	    $('#modal-add-money').modal('toggle');
 	    var id=$("#modal-add-money").val();
 	    console.log("id",id);
- 		var cur_value = $("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text();
- 		var new_value = Number(cur_value)+Number(transfer_amount)
+ 		var new_value = Number(cur_value)+Number(transfer_amount);
+ 		console.log("new value" + new_value);
  		$("#goal-menu-"+id).find('.row.goal-amt.display').find('.cur-val').text(new_value.toFixed(2));
- 		var max =  $("#goal-menu-"+id).find('.row.goal-amt.display').find('.max-val').text();
+ 		
 
  		if (id==0){
 

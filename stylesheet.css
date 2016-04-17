@@ -70,14 +70,19 @@
 .tab-pane {
 	border: 3px solid black;
 	background-color: #E6FFFF;
+	padding: 20px;
+	position: absolute;
+	width: 1170px;
+	top: 167px;
 }
 
 .nav-tabs {
 	border-bottom: 3px black;
 }
 
-.active {
-	border-top: none;
+#myTab {
+	position: absolute;
+	z-index: 10;
 }
 
 .nav-tabs li a {
@@ -86,7 +91,7 @@
 	border-left: 3px solid black;
 	border-right: 3px solid black;
 	background-color: #C8DFDF;
-	border-bottom: 3px black;
+	border-bottom: none;
 }
 
 .nav-tabs li.active a {
@@ -143,10 +148,6 @@
 
 .container {
 	padding-left: 0px;
-}
-
-.tab-pane {
-	padding: 20px;
 }
 
 .goal {
